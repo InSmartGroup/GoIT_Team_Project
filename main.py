@@ -307,3 +307,138 @@ def get_email(name):
     else:
         return f'{name} ->\n--email:\n{email.value}\n\n'
 
+@input_error
+def get_address(name):
+    """
+    This function returns the address for contact with the name that is given as a parameter in the address_book
+    :param name -> str
+    :return address -> str
+    """
+    address = address_book.data[name].address
+    if address is None:
+        return f'There is no address for contact with name {name}'
+    else:
+        return f'{name} ->\n--address:\n{address.value}\n\n'
+
+@input_error
+def show_all(data=address_book.data):
+    """
+    This function returns all contact from the given data. If data is not given then data = address_book
+    :param: data -> dict
+    :return: phone_book -> str
+    """
+    phone_book = ''
+    for name, info in data.items():
+        phones = '--phones:\n'
+        if data[name].phones:
+            for phone in data[name].phones:
+                phones += f'{phone.value}\n'
+        else:
+            phones += 'no phones\n'
+        phone_book += f'\n{name} ->\n{phones}'
+        birthday = data[name].birthday
+        if birthday is not None:
+            phone_book += f'--birthday:\n{birthday.value}\n--days to birthday:\n{data[name].days_to_birthday()}\n'
+        email = data[name].email
+        if email is not None:
+            phone_book += f'--email:\n{email.value}\n'
+        address = data[name].address
+        if address is not None:
+            phone_book += f'--address:\n{address.value}\n'
+    return phone_book
+
+@input_error
+def show_page(page_to_show, n_records='3'):
+    """
+    This function returns contacts from address_book from given page number (given as a parameter page_to_show)
+    with number of records on each page that is given as a parameter n_records
+    :param: page_to_show -> str
+            n_records -> str
+    :return: phone_book -> str
+    """
+    page_num = 1
+    for page in address_book.iterator(int(n_records)):
+        if page_num == int(page_to_show):
+            return f'page {page_num}\n{show_all(page)}'
+        page_num += 1
+
+@input_error
+def search_contact(pattern):
+    """
+    This function returns contacts from address_book whose name or phone number matches the entered string
+    given as a parameter pattern
+    :param: pattern -> str
+    :return: result -> str
+    """
+    result = dict()
+    for name, record in address_book.data.items():
+        if name.lower().find(pattern.lower()) != -1:
+            result[name] = record
+        elif record.phones:
+            for phone in record.phones:
+                if phone.value.find(pattern) != -1:
+                    result[name] = record
+    if result:
+        return show_all(result)
+    else:
+        return f'There are no contacts with {pattern}'
+
+def greeting():
+    return 'How can I help you?'
+
+def end():
+    return 'Good bye!'
+
+def write_file():
+    filename = 'address_book.bin'
+    with open(filename, 'wb') as file:
+        dump(address_book.data, file)
+
+def main():
+    """
+    This function implements all the logic of interaction with the user, all 'print' and 'input' takes place here
+    :param: None
+    :return: None
+    """
+    handler_commands = {'hello': greeting,
+                        'hi': greeting,
+                        'add': add_contact,
+                        'add_birthday': add_birthday,
+                        'add_email': add_email,
+                        'add_address': add_address,
+                        'change': change_contact,
+                        'phone': get_phone,
+                        'get_birthday': get_birthday,
+                        'get_email': get_email,
+                        'get_address': get_address,
+                        'search': search_contact,
+                        'remove': remove_phone,
+                        'show all': show_all,
+                        'show_page': show_page,
+                        '.': end,
+                        'good bye': end,
+                        'close': end,
+                        'exit': end}
+
+    while True:
+        user_input = input('>>>:')
+        if user_input.lower() in handler_commands.keys():
+            output = handler_commands[user_input.lower()]()
+            print(output)
+            if output == 'Good bye!':
+                write_file()
+                exit()
+        else:
+            command, args = parse(user_input.lower())
+            if command in handler_commands.keys():
+                print(handler_commands[command](*args))
+            else:
+                print(
+                    "You entered an invalid command, please enter one of the next commands: "
+                    "'hello', 'hi', 'show all', 'show_page', 'add', 'add_birthday', 'add_email', 'add_address', 'change',"
+                    " 'phone', 'get_birthday', 'get_email', 'get_address', 'search', 'delete', '.', 'good bye', 'close', 'exit'")
+
+
+if __name__ == '__main__':
+    main()
+
