@@ -57,9 +57,3 @@ The **PyCrafters** Team:
 - [Taras Barskyi](https://github.com/Barskyi)
 - [Gregory Ostapenko](https://github.com/InSmartGroup)
 ____
-
-```commandline
-some code here
-def see():
-    pass
-```
