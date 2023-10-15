@@ -92,8 +92,8 @@ class Phone(Field):
 
     @Field.value.setter
     def value(self, value):
-        if value.startswith('+') and len(value[1:]) == 12 and value[1:].isdigit() or value.isdigit() and len(value) in (
-                10, 12):
+        if value.startswith('+') and len(value[1:]) == 12 and value[1:].isdigit() or value.isdigit() and len(value) in\
+                (10, 12):
             self._value = value
         else:
             raise PhoneInvalidFormatError('Invalid phone format')
@@ -139,7 +139,8 @@ address_book = AddressBook()
 
 def parse(user_input):
     """
-    This function parse user input into command and arguments
+    This function parses user's input into command and arguments.
+
     :param user_input: user input -> str
     :return: command -> str, args -> list
     """
@@ -150,7 +151,8 @@ def parse(user_input):
 
 def input_error(func):
     """
-    This is a decorator function that catches errors that may occur when calling a function given as a parameter
+    This is a decorator function that catches errors that may occur when calling a function given as a parameter.
+
     :param func -> function
     :return func if no error, str if there's an error
     """
@@ -158,26 +160,27 @@ def input_error(func):
         try:
             return func(*args)
         except KeyError:
-            return 'The name is not in contacts. Enter user name please'
+            return 'The name is not in contacts. Enter a user name please.'
         except ValueError:
-            return 'ValueError: Give me name and phone please'
+            return 'ValueError: Please enter a name followed by a phone.'
         except IndexError:
-            return 'IndexError: Give me name and phone please'
+            return 'IndexError: Please enter a name followed by a phone.'
         except TypeError:
-            return 'You entered invalid numbers of arguments for this command'
+            return 'You have entered invalid number of arguments for this command.'
         except PhoneInvalidFormatError:
-            return 'You entered invalid phone format'
+            return 'Invalid phone number format.'
         except BirthdayInvalidFormatError:
-            return 'You entered invalid birthday format'
+            return 'Invalid birthday format.'
         except EmailInvalidFormatError:
-            return 'You entered invalid email format'
+            return 'Invalid email format.'
     return inner
 
 @input_error
 def add_contact(name, phone=None, birthday=None):
     """
-    This function add the new phone and birthday (if they are given) for contact with the name that are given
-    as parameters in the address_book. If the name is not in contacts, then creates a new record in address_book
+    This function adds a new phone and birthday (if provided by the user) for a contact with a name given as
+    parameter in the address_book. If the name is not in contacts, then it creates a new record in address_book.
+
     :param name -> str
            phone -> str
            birthday -> str
@@ -185,96 +188,102 @@ def add_contact(name, phone=None, birthday=None):
     """
     if name in address_book.data.keys():
         if phone is None:
-            return f'A contact with name {name} already exists'
+            return f'A contact with named {name} already exists.'
         else:
             address_book.data[name].add_phone(Phone(phone))
             if birthday is None:
-                return f'Phone {phone} successfully added to contact {name}'
+                return f'Phone number {phone} has been assigned to contact named {name}.'
             else:
                 address_book.data[name].add_birthday(Birthday(birthday))
-                return f'Phone {phone} and birthday {birthday} successfully added to contact {name}'
+                return f'Phone number {phone} and birthday {birthday} have been assigned to contact named {name}.'
     else:
         if phone is None:
             record = Record(Name(name))
             address_book.add_record(record)
-            return f'Contact {name} successfully added'
+            return f'Contact named {name} has been added.'
         else:
             if birthday is None:
                 record = Record(Name(name))
                 record.add_phone(Phone(phone))
                 address_book.add_record(record)
-                return f'Contact {name} -> {phone} successfully added'
+                return f'Contact named {name} with a phone number {phone} has been added.'
             else:
                 record = Record(Name(name), Birthday(birthday))
                 record.add_phone(Phone(phone))
                 address_book.add_record(record)
-                return f'Contact {name} -> {phone} -> {birthday} successfully added'
+                return f"Contact named {name} with a phone number {phone} and {birthday} birthday has been added."
 
 @input_error
 def add_birthday(name, birthday):
     """
-    This function add the birthday for contact with the name that are given as parameters in the address_book
+    This function adds a birthday for a contact with a name given as parameters in the address_book.
+
     :param name -> str
            birthday -> str
     :return str
     """
     address_book.data[name].add_birthday(Birthday(birthday))
-    return f'The birthday {birthday} for contact {name} successfully added'
+    return f"{name}'s birthday {birthday} has been added."
 
 @input_error
 def add_email(name, email):
     """
-    This function add the email for contact with the name that are given as parameters in the address_book
+    This function adds an email for a contact with the name given as parameters in the address_book.
+
     :param name -> str
            email -> str
     :return str
     """
     address_book.data[name].add_email(Email(email))
-    return f'The email {email} for contact {name} successfully added'
+    return f"Email {email} for {name} has been added."
 
 @input_error
 def add_address(name, address):
     """
-    This function add the address for contact with the name that are given as parameters in the address_book
+    This function adds the address for a contact with the name given as parameters in the address_book.
+
     :param name -> str
            address -> str
     :return str
     """
     address_book.data[name].add_address(Address(address))
-    return f'The address {address} for contact {name} successfully added'
+    return f"The address {address} for {name} has been added."
 
 @input_error
 def change_contact(name, old_phone, new_phone):
     """
-    This function change the phone for contact with the name that are given as parameters in the address_book
+    This function changes a phone number of a contact with the name given as parameters in the address_book.
+
     :param name -> str
            old_phone -> str
            new_phone -> str
     :return str
     """
     address_book.data[name].change_phone(Phone(old_phone), Phone(new_phone))
-    return f'Contact {name} -> {new_phone} successfully changed'
+    return f"{name}'s phone number is now {new_phone}."
 
 @input_error
 def remove_phone(name, phone):
     """
-    This function remove the phone for contact with the name that are given as parameters in the address_book
+    This function removes a phone number for a contact with the name given as parameters in the address_book.
+
     :param name -> str
            phone -> str
     :return str
     """
     address_book.data[name].remove_phone(Phone(phone))
-    return f'The phone {phone} for contact {name} successfully removed'
+    return f"{name}'s phone number {phone} has been removed."
 
 @input_error
 def get_phone(name):
     """
-    This function returns the phone or phones for contact with the name that is given as a parameter in the address_book
+    This function returns a phone/s number for a contact with the name given as a parameter in the address_book.
+
     :param name -> str
     :return phone -> str
     """
     if not address_book.data[name].phones:
-        return f'There is no phones for contact with name {name}'
+        return f"There are no phone numbers for a contact named {name}."
     else:
         phones = 'phones:\n'
         for phone in address_book.data[name].phones:
