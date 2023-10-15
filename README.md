@@ -36,8 +36,8 @@ ____
 
 ## Authors
 The **PyCrafters** Team:
-[Yuliia Didenko](https://github.com/yulyan407)
-[Maksim Nesterovskyi](https://github.com/legendarym4x)
-[Kostiantyn Gorishnyi](https://github.com/Kostiantyn78)
-[Taras Barskyi](https://github.com/Barskyi)
-[Gregory Ostapenko](https://github.com/InSmartGroup)
+- [Yuliia Didenko](https://github.com/yulyan407)
+- [Maksim Nesterovskyi](https://github.com/legendarym4x)
+- [Kostiantyn Gorishnyi](https://github.com/Kostiantyn78)
+- [Taras Barskyi](https://github.com/Barskyi)
+- [Gregory Ostapenko](https://github.com/InSmartGroup)
