@@ -9,7 +9,9 @@ ____
 - [Sorting Files](#sorting-files)
 
 [Available Functions](#available-functions)
+
 [License](#license)
+
 [Authors](#authors)
 ____
 
@@ -39,15 +41,15 @@ This project is designed to organize and manage your contact details, notes, and
 videos, etc.
 ____
 
-### Available Functions
+## Available Functions
 
 ____
 
-### License
+## License
 This project is distributed under the **MIT** license.
 ____
 
-### Authors
+## Authors
 The **PyCrafters** Team:
 - [Yuliia Didenko](https://github.com/yulyan407)
 - [Maksim Nesterovskyi](https://github.com/legendarym4x)
