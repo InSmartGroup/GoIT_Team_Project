@@ -9,9 +9,7 @@ ____
 - [Sorting Files](#sorting-files)
 
 [Available Functions](#available-functions)
-
 [License](#license)
-
 [Authors](#authors)
 ____
 
