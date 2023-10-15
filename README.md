@@ -58,3 +58,8 @@ The **PyCrafters** Team:
 - [Gregory Ostapenko](https://github.com/InSmartGroup)
 ____
 
+```commandline
+some code here
+def see():
+    pass
+```
