@@ -1,7 +1,5 @@
-<p align="center">
 # CLIB: Command Line Interface Bot
 ### The PyCrafters GoIT Team Project
-</p>
 ____
 
 ### Table of Contents  
