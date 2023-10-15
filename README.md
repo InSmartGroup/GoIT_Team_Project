@@ -4,9 +4,9 @@ ____
 
 ### Table of Contents  
 1. [Project Description](#contacts-and-the-book-of-notes)  
-- [Contacts](#contacts)
-- [Notes](#notes)
-- [Sorting Files](#sorting-files)
+- 1.1. [Contacts](#contacts)
+- 1.2. [Notes](#notes)
+- 1.3. [Sorting Files](#sorting-files)
 2. [Available Functions](#available-functions)
 3. [License](#license)
 4. [Authors](#authors)
