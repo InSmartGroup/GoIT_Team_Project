@@ -3,16 +3,13 @@
 ____
 
 ### Table of Contents  
-[Project Description](#contacts-and-the-book-of-notes)  
+1. [Project Description](#contacts-and-the-book-of-notes)  
 - [Contacts](#contacts)
 - [Notes](#notes)
 - [Sorting Files](#sorting-files)
-
-[Available Functions](#available-functions)
-
-[License](#license)
-
-[Authors](#authors)
+2. [Available Functions](#available-functions)
+3. [License](#license)
+4. [Authors](#authors)
 ____
 
 ## Contacts and the Book of Notes
@@ -42,7 +39,9 @@ videos, etc.
 ____
 
 ## Available Functions
+```commandline
 
+```
 ____
 
 ## License
