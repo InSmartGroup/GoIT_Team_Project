@@ -3,11 +3,15 @@
 ____
 
 ### Table of Contents  
-[Contacts and the Book of Notes](#contacts-and-the-book-of-notes)  
+[Project Description](#contacts-and-the-book-of-notes)  
 - [Contacts](#contacts)
 - [Notes](#notes)
 - [Sorting Files](#sorting-files)
+
+[Available Functions](#available-functions)
+
 [License](#license)
+
 [Authors](#authors)
 ____
 
@@ -35,6 +39,10 @@ a new or editing an existing record. In case of incorrect input, you will receiv
 This project is designed to organize and manage your contact details, notes, and files as easy as possible.
 - **Sorting files in a folder**: Automatic files sorting in a specified folder by category, such as images, documents,
 videos, etc.
+____
+
+### Available Functions
+
 ____
 
 ### License
