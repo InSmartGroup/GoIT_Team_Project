@@ -7,10 +7,28 @@ ____
 - 1.1. [Contacts](#contacts)
 - 1.2. [Notes](#notes)
 - 1.3. [Sorting Files](#sorting-files)
-2. [Available Functions](#available-functions)
-   - [hello / hi](#command-hello-hi)
+2. [Available Commands](#available-commands)
+   - [hello, hi](#command-hello--hi)
    - [add](#command-add)
-   -  
+   - [add_birthday](#command-add_birthday)
+   - [add_email](#command-add_email)
+   - [add_address](#command-add_address)
+   - [change](#command-change)
+   - [get_phone](#command-get_phone)
+   - [get_email](#command-get_email)
+   - [get_address](#command-add_address)
+   - [change](#command-change)
+   - [get_phone](#command-get_phone)
+   - [get_email](#command-get_email)
+   - [get_address](#command-get_address)
+   - [get_birthday](#command-get_birthday)
+   - [search](#command-search)
+   - [remove](#command-remove)
+   - [show all](#command-show-all)
+   - [show_page](#command-show_page)
+   - [delete](#command-delete)
+   - [help](#command-help)
+   - [goodbye, close, exit](#command-goodbye--close--exit)
 3. [License](#license)
 4. [Authors](#authors)
 ____
@@ -41,7 +59,7 @@ This project is designed to organize and manage your contact details, notes, and
 videos, etc.
 ____
 
-## Available Functions
+## Available Commands
 The user should use the command line and enter commands to control CLIB and the data.
 The full list of available commands is presented below:
 
