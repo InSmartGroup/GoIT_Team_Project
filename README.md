@@ -8,8 +8,9 @@ ____
 - 1.2. [Notes](#notes)
 - 1.3. [Sorting Files](#sorting-files)
 2. [Available Functions](#available-functions)
-- [hello / hi](#command-hello-hi)
-- [add](#command-add)
+   - [hello / hi](#command-hello-hi)
+   - [add](#command-add)
+   -  
 3. [License](#license)
 4. [Authors](#authors)
 ____
