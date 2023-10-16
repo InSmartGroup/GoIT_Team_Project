@@ -1,3 +1,5 @@
+![CLIB](https://drive.google.com/drive/u/0/search?q=clib.png)
+
 # CLIB
 ### The Command Line Interface Bot
 ##### a project by **PyCrafters**
