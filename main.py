@@ -1,4 +1,4 @@
-from collections import UserDict
+from collections import UserDict, UserList
 from datetime import datetime
 from pickle import load, dump
 from pathlib import Path
@@ -129,6 +129,29 @@ class Email(Field):
         else:
             raise EmailInvalidFormatError('Invalid email format')
 
+class Notes(UserList):
+
+    def __init__(self):
+
+        super().__init__()
+
+        filename = 'note_book.bin'
+        if Path(filename).exists():
+            with open(filename, 'rb') as file:
+                self.data = load(file)
+    def add_note(self, note):
+
+        self.data.append(note)
+
+
+class Note():
+
+    def __init__(self, text, tags=None, title=None):
+
+        self.text = text
+        self.tags = tags
+        self.title = title
+
 
 class Address(Field):
     pass
@@ -146,7 +169,12 @@ class EmailInvalidFormatError(Exception):
     pass
 
 
+class NoteInputInvalidFormatError(Exception):
+    pass
+
+
 address_book = AddressBook()
+note_book = Notes()
 
 
 def parse(user_input):
@@ -187,7 +215,8 @@ def input_error(func):
             return 'Invalid birthday format. Please enter the birthday in the format YYYY-MM_DD'
         except EmailInvalidFormatError:
             return 'Invalid email format.'
-
+        except NoteInputInvalidFormatError:
+            return 'Incorrect command format. Enter the correct parameters'
     return inner
 
 
@@ -453,6 +482,9 @@ def write_file():
     with open(filename, 'wb') as file:
         dump(address_book.data, file)
 
+    filename = 'note_book.bin'
+    with open(filename, 'wb') as file:
+        dump(note_book.data, file)
 
 def get_help():
     """
@@ -483,6 +515,174 @@ def get_help():
     print(f"".ljust(120, "_"))
     return ""
 
+def select_notes(*args):
+
+    try:
+        text_for_search = args[0]
+    except IndexError:
+        raise NoteInputInvalidFormatError
+
+    tags = []
+    title = ''
+    found_notes = []
+
+    if text_for_search.startswith('#'):
+        tags.append(text_for_search)
+        text_for_search = None
+
+    for index, item in enumerate(args[1:]):
+
+        if item.startswith('#'):
+            tags.append(item)
+        elif item.startswith('/t/'):
+            title = f'{item[3:]} {" ".join(args[index + 2:])}'
+            break
+        else:
+            text_for_search += f' {item}'
+
+    for index, note in enumerate(note_book.data):
+        if text_for_search:
+            if text_for_search in note.text:
+                if tags:
+                    if len(tags) > 1:
+                        for tag in tags:
+                            if tag in note.tags:
+                                found_notes.append([note, note.title, index])
+                                break
+                    elif tags[0] in note.tags:
+                        found_notes.append([note, note.title, index])
+                else:
+                    found_notes.append([note, note.title, index])
+            else:
+                continue
+        else:
+            if len(tags) > 1:
+                for tag in tags:
+                    if tag in note.tags:
+                        found_notes.append([note, note.title, index])
+                        break
+            elif tags[0] in note.tags:
+                found_notes.append([note, note.title, index])
+    return found_notes
+
+@input_error
+def add_note(*args):
+
+    try:
+        text = args[0]
+    except IndexError:
+        raise NoteInputInvalidFormatError
+
+    if text.startswith('#') or text.startswith('/t/'):
+        return f'Note has not been added ! Enter note text.'
+
+    tags = []
+    title = ''
+
+    for index, item in enumerate(args[1:]):
+        if item.startswith('#'):
+            tags.append(item)
+        elif item.startswith('/t/'):
+            title = f'{item[3:]} {" ".join(args[index + 2:])}'
+            break
+        else:
+            text += f' {item}'
+
+    note_book.add_note(Note(text, tags, title))
+
+    return f'The note has been added'
+
+@input_error
+def find_note(*args):
+
+    found_notes = select_notes(*args)
+
+    if found_notes:
+        if len(found_notes) == 1:
+            return f'Founded notes:\n{found_notes[0][0].title}\n{found_notes[0][0].text}'
+        else:
+            rezult = f'Founded notes:'
+            for note in sorted(found_notes, key=lambda x: x[1]):
+                rezult += f'\n{note[0].title}\n{note[0].text}'
+            return rezult
+    else:
+        return f'Note(s) don`t found'
+
+@input_error
+def delete_note(*args):
+
+    found_notes = select_notes(*args)
+    rezult = f'No notes matching the criterion were found for deletion'
+
+    if found_notes:
+        if len(found_notes) == 1:
+            del note_book.data[found_notes[0][2]]
+            rezult = f'Deleted note:\n{found_notes[0][0].title}\n{found_notes[0][0].text}'
+        else:
+            sorted_found_notes = sorted(found_notes, key=lambda x: x[1])
+            list_of_notes = 'Notes matching the condition:'
+
+            for index, note in enumerate(sorted_found_notes):
+                list_of_notes += f'\n{index+1}) {note[0].title}\n{note[0].text}'
+
+            print(f'{list_of_notes}')
+
+            choice = input(f'You can:\n' \
+                     f'Don`t delete anything - enter "0"\n' \
+                     f'Delete all - enter "a" or "A"\n' \
+                     f'Delete note № - enter the note number\n'
+                        f'Your choice - ')
+            if choice == '0':
+                rezult = f'Records have not been deleted'
+            elif choice == 'a' or choice == 'A':
+                for index in range(len(found_notes) - 1, -1, -1):
+                    del note_book.data[found_notes[index][2]]
+                rezult = f'Notes has been deleted'
+            elif choice.isdigit() and  (1 <= int(choice) <= len(found_notes)):
+                del note_book.data[sorted_found_notes[int(choice) - 1][2]]
+                rezult = f'Note № {choice} has been deleted'
+            else:
+                rezult = f'The selection is incorrect. Notes have not been deleted'
+    return rezult
+
+@input_error
+def edit_note(*args):
+
+    found_notes = select_notes(*args)
+    rezult = f'No notes matching the criterion were found for change'
+
+    if found_notes:
+        if len(found_notes) == 1:
+            new_text = input(f'Found note\n'
+                             f'{found_notes[0][0].title}\n'
+                             f'{found_notes[0][0].text}\n'
+                             f'Enter new note text (empty string for skip) - ')
+            if new_text:
+                note_book.data[found_notes[0][2]].text = new_text
+                rezult = 'Note redacted'
+            else:
+                rezult = 'Note unchanged'
+        else:
+            sorted_found_notes = sorted(found_notes, key=lambda x: x[1])
+            list_of_notes = 'Notes matching the condition:'
+
+            for index, note in enumerate(sorted_found_notes):
+                list_of_notes += f'\n{index+1}) {note[0].title}\n{note[0].text}'
+
+            print(f'{list_of_notes}')
+
+            choice = input(f'Which note to change (0 to skip) - ')
+            if choice == '0':
+                rezult = f'Records have not been edited'
+            elif choice.isdigit() and  (1 <= int(choice) <= len(found_notes)):
+                new_text = input(f'Enter new note text (empty string for skip) - ')
+                if new_text:
+                    note_book.data[sorted_found_notes[int(choice) - 1][2]].text = new_text
+                    rezult = f'Note № {choice} has been edited'
+            else:
+                rezult = f'The selection is incorrect. Notes have not been edited'
+    return rezult
+
 
 def main():
     """
@@ -510,7 +710,11 @@ def main():
                         'show_page': show_page,
                         'good bye': end,
                         'close': end,
-                        'exit': end}
+                        'exit': end,
+                        'add_note': add_note, # add_note <text of note> <one or few tags in format #tag #tag> </t/title>
+                        'find_note': find_note, # find_note <text for search> <one or few tags in format #tag #tag>
+                        'delete_note': delete_note, # delete_note <text in note> <one or few tags in format #tag #tag>
+                        'edit_note': edit_note} # edit_note <text in note> <one or few tags in format #tag #tag>
 
     while True:
         user_input = input('Type your command: ')
