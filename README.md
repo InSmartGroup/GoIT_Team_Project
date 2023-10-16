@@ -42,7 +42,7 @@ ____
 The user should use the command line and enter commands to control CLIB and the data.
 The full list of available commands is presented below:
 
-Command: hello / hi
+##### Command: hello / hi
 - Output: Welcomes CLIB and greets the user
 - Example:
 ```commandline
@@ -50,7 +50,7 @@ hello
 How can I help you?
 ```
 
-Command: add
+##### Command: add
 - Output: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
 Optionally, the user can add only the contact name itself, without providing the phone and bidthday 
 - Examples:
@@ -59,97 +59,97 @@ add Steve 380935552277 StepanaBandery16
 add Bob
 ```
 
-Command: add_birthday
+##### Command: add_birthday
 - Output: Adds birthday data to a specified contact name
 - Example:
 ```commandline
 add_birthday Steve 1985-01-01
 ```
 
-Command: add_email
+##### Command: add_email
 - Output: Adds an email to a specified contact name
 - Example:
 ```commandline
 add_email Steve example@gmail.com
 ```
 
-Command: add_address
+##### Command: add_address
 - Output: Adds an address to a specified contact name
 - Example:
 ```commandline
 add_address Steve StepanaBandery16
 ```
 
-Command: change
+##### Command: change
 - Output: Changes an old phone number of a specified contact to a new one
 - Example:
 ```commandline
 change Steve 380935552277 380951113322
 ```
 
-7. Command: get_phone
-Output: If exists, returns a phone number of a specified contact
-Example:
+##### Command: get_phone
+- Output: If exists, returns a phone number of a specified contact
+- Example:
 ```commandline
 get_phone Steve
 380951113322
 ```
 
-8. Command: get_email <name>
-Output: If exists, returns an email number of a specified contact
-Example:
+##### Command: get_email <name>
+- Output: If exists, returns an email number of a specified contact
+- Example:
 ```commandline
 get_email Steve
 example@gmail.com
 ```
 
-9. Command: get_address
-Output: If exists, returns an address of a specified contact name
-Example:
+##### Command: get_address
+- Output: If exists, returns an address of a specified contact name
+- Example:
 ```commandline
 get_address Steve
 StepanaBandery16
 ```
 
-10. Command: get_birthday
-Output: If exists, returns a birthday of a specified contact name
-Example:
+##### Command: get_birthday
+- Output: If exists, returns a birthday of a specified contact name
+- Example:
 ```commandline
 get_birthday Steve
 ```
 
-11. Command: search
-Output: If exists, returns the searched name or a phone number
-Examples:
+##### Command: search
+- Output: If exists, returns the searched name or a phone number
+- Examples:
 ```commandline
 search Steve
 search 380951113322
 ```
 
-12. Command: remove
-Output: Deletes the phone number of a specified contact
-Example:
+##### Command: remove
+- Output: Deletes the phone number of a specified contact
+- Example:
 ```commandline
 remove Steve 380951113322
 ```
 
-13. Command: show all
-Output: Prints all the contact details in the Book of Contacts
-Example:
+##### Command: show all
+- Output: Prints all the contact details in the Book of Contacts
+- Example:
 ```commandline
 show all
 ```
 
-14. Command: show_page <name> <phone number>
-Output: Returns contacts from the address book for a given page number
-Example:
+##### Command: show_page <name> <phone number>
+- Output: Returns contacts from the address book for a given page number
+- Example:
 ```commandline
 show_page Steve 380951113322
 ```
 
-15. Command: goodbye / close / exit
-Output: Quits the program and terminates the Command Line Interface Bot
-Examples:
+##### Command: goodbye / close / exit
+- Output: Quits the program and terminates the Command Line Interface Bot
+- Examples:
 ```commandline
 good bye
 close
