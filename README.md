@@ -1,4 +1,4 @@
-![CLIB](https://drive.google.com/file/d/1J3vpdD0c9oBQ0mQJJNQ0jpifXM7FWJXy/view?usp=sharing)
+![Alt text](https://drive.google.com/drive/u/0/my-drive/clib.png)
 
 # CLIB
 ## The Command Line Interface Bot by **PyCrafters**
