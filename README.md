@@ -42,47 +42,47 @@ ____
 The user should use the command line and enter commands to control CLIB and the data.
 The full list of available commands is presented below:
 
-1. Command: hello / hi
-Output: Welcomes CLIB and greets the user
-Example:
+Command: hello / hi
+- Output: Welcomes CLIB and greets the user
+- Example:
 ```commandline
 hello
 How can I help you?
 ```
 
-2. Command: add
-Output: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
+Command: add
+- Output: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
 Optionally, the user can add only the contact name itself, without providing the phone and bidthday 
-Examples:
+- Examples:
 ```commandline
 add Steve 380935552277 StepanaBandery16
 add Bob
 ```
 
-3. Command: add_birthday
-Output: Adds birthday data to a specified contact name
-Example:
+Command: add_birthday
+- Output: Adds birthday data to a specified contact name
+- Example:
 ```commandline
 add_birthday Steve 1985-01-01
 ```
 
-4. Command: add_email
-Output: Adds an email to a specified contact name
-Example:
+Command: add_email
+- Output: Adds an email to a specified contact name
+- Example:
 ```commandline
 add_email Steve example@gmail.com
 ```
 
-5. Command: add_address
-Output: Adds an address to a specified contact name
-Example:
+Command: add_address
+- Output: Adds an address to a specified contact name
+- Example:
 ```commandline
 add_address Steve StepanaBandery16
 ```
 
-6. Command: change
-Output: Changes an old phone number of a specified contact to a new one
-Example:
+Command: change
+- Output: Changes an old phone number of a specified contact to a new one
+- Example:
 ```commandline
 change Steve 380935552277 380951113322
 ```
