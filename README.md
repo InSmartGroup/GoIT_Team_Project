@@ -52,10 +52,10 @@ How can I help you?
 
 ##### Command: add
 - Output: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
-Optionally, the user can add only the contact name itself, without providing the phone and bidthday 
+Optionally, the user can add only the contact name itself, without providing the phone and birthday 
 - Examples:
 ```commandline
-add Steve 380935552277 StepanaBandery16
+add Steve 380935552277 1985-01-01
 add Bob
 ```
 
@@ -95,7 +95,7 @@ get_phone Steve
 380951113322
 ```
 
-##### Command: get_email <name>
+##### Command: get_email
 - Output: If exists, returns an email number of a specified contact
 - Example:
 ```commandline
@@ -140,11 +140,26 @@ remove Steve 380951113322
 show all
 ```
 
-##### Command: show_page <name> <phone number>
+##### Command: show_page
 - Output: Returns contacts from the address book for a given page number
 - Example:
 ```commandline
 show_page Steve 380951113322
+```
+
+##### Command: delete
+- Output: Deletes a contact with a specified name
+- Examples:
+```commandline
+delete Steve
+delete Bob
+```
+
+##### Command: help
+- Output: Prints the full list of commands available to a user
+- Example:
+```commandline
+help
 ```
 
 ##### Command: goodbye / close / exit
@@ -155,6 +170,9 @@ good bye
 close
 exit
 ```
+
+
+
 ____
 
 ## License
