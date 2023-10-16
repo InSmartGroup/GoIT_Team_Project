@@ -16,6 +16,9 @@ class AddressBook(UserDict):
     def add_record(self, Record):
         self.data[Record.name.value] = Record
 
+    def del_record(self, name):
+        del self.data[name]
+
     def iterator(self, n_records):
         page = dict()
         i = 0
@@ -96,7 +99,8 @@ class Phone(Field):
                 (10, 12):
             self._value = value
         else:
-            raise PhoneInvalidFormatError('Invalid phone format')
+            raise PhoneInvalidFormatError('Invalid phone format. Please enter the phone in the format'
+                                          ' +xxxxxxxxxxxx, xxxxxxxxxxxx or xxxxxxxxxx')
 
 
 class Birthday(Field):
@@ -111,7 +115,8 @@ class Birthday(Field):
         if birthday is not None and birthday < today:
             self._value = value
         else:
-            raise BirthdayInvalidFormatError('Invalid birthday format')
+            raise BirthdayInvalidFormatError('Invalid birthday format. Please enter the birthday'
+                                             ' in the format YYYY-MM_DD')
 
 
 class Email(Field):
@@ -177,9 +182,9 @@ def input_error(func):
         except TypeError:
             return 'You have entered invalid number of arguments for this command.'
         except PhoneInvalidFormatError:
-            return 'Invalid phone number format.'
+            return 'Invalid phone format. Please enter the phone in the format +xxxxxxxxxxxx, xxxxxxxxxxxx or xxxxxxxxxx'
         except BirthdayInvalidFormatError:
-            return 'Invalid birthday format.'
+            return 'Invalid birthday format. Please enter the birthday in the format YYYY-MM_DD'
         except EmailInvalidFormatError:
             return 'Invalid email format.'
 
@@ -226,6 +231,19 @@ def add_contact(name, phone=None, birthday=None):
 
 
 @input_error
+def del_contact(name):
+    """
+    This function deletes a contact with a name given as
+    parameter in the address_book
+
+    :param name -> str
+    :return str
+    """
+    address_book.del_record(name)
+    return f'Contact {name} successfully deleted.'
+
+
+@input_error
 def add_birthday(name, birthday):
     """
     This function adds a birthday for a contact with a name given as parameters in the address_book.
@@ -252,7 +270,7 @@ def add_email(name, email):
 
 
 @input_error
-def add_address(name, address):
+def add_address(name, *address_args):
     """
     This function adds the address for a contact with the name given as parameters in the address_book.
 
@@ -260,6 +278,7 @@ def add_address(name, address):
            address -> str
     :return str
     """
+    address = ' '.join([*address_args])
     address_book.data[name].add_address(Address(address))
     return f"The address {address} for {name} has been added."
 
@@ -475,6 +494,7 @@ def main():
                         'hi': greeting,
                         'help': get_help,
                         'add': add_contact,
+                        'delete': del_contact,
                         'add_birthday': add_birthday,
                         'add_email': add_email,
                         'add_address': add_address,
