@@ -1,4 +1,6 @@
-![CLIB](https://drive.google.com/drive/u/0/search?q=clib.PNG "CLIB")
+# CLIB
+### The Command Line Interface Bot
+##### a project by **PyCrafters**
 
 ### Table of Contents  
 1. [Project Description](#contacts-and-the-book-of-notes)  
