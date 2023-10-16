@@ -8,6 +8,8 @@ ___
 - 1.2. [Notes](#notes)
 - 1.3. [Sorting Files](#sorting-files)
 2. [Available Commands](#available-commands)
+
+|-----|-----|-----|
 | [hello, hi](#command-hello--hi) | [add](#command-add) | [add_birthday](#command-add_birthday) |
 | [add_email](#command-add_email) | [add_address](#command-add_address) | [change](#command-change) |
 | [get_phone](#command-get_phone) | [get_email](#command-get_email) | [get_address](#command-get_address) |
