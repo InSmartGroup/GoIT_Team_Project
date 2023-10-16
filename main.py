@@ -92,8 +92,8 @@ class Phone(Field):
 
     @Field.value.setter
     def value(self, value):
-        if value.startswith('+') and len(value[1:]) == 12 and value[1:].isdigit() or value.isdigit() and len(value) in (
-                10, 12):
+        if value.startswith('+') and len(value[1:]) == 12 and value[1:].isdigit() or value.isdigit() and len(value) in \
+                (10, 12):
             self._value = value
         else:
             raise PhoneInvalidFormatError('Invalid phone format')
@@ -113,6 +113,7 @@ class Birthday(Field):
         else:
             raise BirthdayInvalidFormatError('Invalid birthday format')
 
+
 class Email(Field):
 
     @Field.value.setter
@@ -123,23 +124,30 @@ class Email(Field):
         else:
             raise EmailInvalidFormatError('Invalid email format')
 
+
 class Address(Field):
     pass
+
 
 class PhoneInvalidFormatError(Exception):
     pass
 
+
 class BirthdayInvalidFormatError(Exception):
     pass
+
 
 class EmailInvalidFormatError(Exception):
     pass
 
+
 address_book = AddressBook()
+
 
 def parse(user_input):
     """
-    This function parse user input into command and arguments
+    This function parses user's input into command and arguments.
+
     :param user_input: user input -> str
     :return: command -> str, args -> list
     """
@@ -148,36 +156,42 @@ def parse(user_input):
     args = user_input_list[1:]
     return (command, args)
 
+
 def input_error(func):
     """
-    This is a decorator function that catches errors that may occur when calling a function given as a parameter
+    This is a decorator function that catches errors that may occur when calling a function given as a parameter.
+
     :param func -> function
     :return func if no error, str if there's an error
     """
+
     def inner(*args):
         try:
             return func(*args)
         except KeyError:
-            return 'The name is not in contacts. Enter user name please'
+            return 'The name is not in contacts. Enter a user name please.'
         except ValueError:
-            return 'ValueError: Give me name and phone please'
+            return 'ValueError: Please enter a name followed by a phone.'
         except IndexError:
-            return 'IndexError: Give me name and phone please'
+            return 'IndexError: Please enter a name followed by a phone.'
         except TypeError:
-            return 'You entered invalid numbers of arguments for this command'
+            return 'You have entered invalid number of arguments for this command.'
         except PhoneInvalidFormatError:
-            return 'You entered invalid phone format'
+            return 'Invalid phone number format.'
         except BirthdayInvalidFormatError:
-            return 'You entered invalid birthday format'
+            return 'Invalid birthday format.'
         except EmailInvalidFormatError:
-            return 'You entered invalid email format'
+            return 'Invalid email format.'
+
     return inner
+
 
 @input_error
 def add_contact(name, phone=None, birthday=None):
     """
-    This function add the new phone and birthday (if they are given) for contact with the name that are given
-    as parameters in the address_book. If the name is not in contacts, then creates a new record in address_book
+    This function adds a new phone and birthday (if provided by the user) for a contact with a name given as
+    parameter in the address_book. If the name is not in contacts, then it creates a new record in address_book.
+
     :param name -> str
            phone -> str
            birthday -> str
@@ -185,173 +199,195 @@ def add_contact(name, phone=None, birthday=None):
     """
     if name in address_book.data.keys():
         if phone is None:
-            return f'A contact with name {name} already exists'
+            return f'A contact with named {name} already exists.'
         else:
             address_book.data[name].add_phone(Phone(phone))
             if birthday is None:
-                return f'Phone {phone} successfully added to contact {name}'
+                return f'Phone number {phone} has been assigned to contact named {name}.'
             else:
                 address_book.data[name].add_birthday(Birthday(birthday))
-                return f'Phone {phone} and birthday {birthday} successfully added to contact {name}'
+                return f'Phone number {phone} and birthday {birthday} have been assigned to contact named {name}.'
     else:
         if phone is None:
             record = Record(Name(name))
             address_book.add_record(record)
-            return f'Contact {name} successfully added'
+            return f'Contact named {name} has been added.'
         else:
             if birthday is None:
                 record = Record(Name(name))
                 record.add_phone(Phone(phone))
                 address_book.add_record(record)
-                return f'Contact {name} -> {phone} successfully added'
+                return f'Contact named {name} with a phone number {phone} has been added.'
             else:
                 record = Record(Name(name), Birthday(birthday))
                 record.add_phone(Phone(phone))
                 address_book.add_record(record)
-                return f'Contact {name} -> {phone} -> {birthday} successfully added'
+                return f"Contact named {name} with a phone number {phone} and {birthday} birthday has been added."
+
 
 @input_error
 def add_birthday(name, birthday):
     """
-    This function add the birthday for contact with the name that are given as parameters in the address_book
+    This function adds a birthday for a contact with a name given as parameters in the address_book.
+
     :param name -> str
            birthday -> str
     :return str
     """
     address_book.data[name].add_birthday(Birthday(birthday))
-    return f'The birthday {birthday} for contact {name} successfully added'
+    return f"{name}'s birthday {birthday} has been added."
+
 
 @input_error
 def add_email(name, email):
     """
-    This function add the email for contact with the name that are given as parameters in the address_book
+    This function adds an email for a contact with the name given as parameters in the address_book.
+
     :param name -> str
            email -> str
     :return str
     """
     address_book.data[name].add_email(Email(email))
-    return f'The email {email} for contact {name} successfully added'
+    return f"Email {email} for {name} has been added."
+
 
 @input_error
 def add_address(name, address):
     """
-    This function add the address for contact with the name that are given as parameters in the address_book
+    This function adds the address for a contact with the name given as parameters in the address_book.
+
     :param name -> str
            address -> str
     :return str
     """
     address_book.data[name].add_address(Address(address))
-    return f'The address {address} for contact {name} successfully added'
+    return f"The address {address} for {name} has been added."
+
 
 @input_error
 def change_contact(name, old_phone, new_phone):
     """
-    This function change the phone for contact with the name that are given as parameters in the address_book
+    This function changes a phone number of a contact with the name given as parameters in the address_book.
+
     :param name -> str
            old_phone -> str
            new_phone -> str
     :return str
     """
     address_book.data[name].change_phone(Phone(old_phone), Phone(new_phone))
-    return f'Contact {name} -> {new_phone} successfully changed'
+    return f"{name}'s phone number is now {new_phone}."
+
 
 @input_error
 def remove_phone(name, phone):
     """
-    This function remove the phone for contact with the name that are given as parameters in the address_book
+    This function removes a phone number for a contact with the name given as parameters in the address_book.
+
     :param name -> str
            phone -> str
     :return str
     """
     address_book.data[name].remove_phone(Phone(phone))
-    return f'The phone {phone} for contact {name} successfully removed'
+    return f"{name}'s phone number {phone} has been removed."
+
 
 @input_error
 def get_phone(name):
     """
-    This function returns the phone or phones for contact with the name that is given as a parameter in the address_book
+    This function returns a phone/s number for a contact with the name given as a parameter in the address_book.
+
     :param name -> str
     :return phone -> str
     """
     if not address_book.data[name].phones:
-        return f'There is no phones for contact with name {name}'
+        return f"There are no phone numbers for a contact named {name}."
     else:
         phones = 'phones:\n'
         for phone in address_book.data[name].phones:
             phones += f'{phone.value}\n'
         return f'{name} ->\n{phones}'
 
+
 @input_error
 def get_birthday(name):
     """
-    This function returns the birthday for contact with the name that is given as a parameter in the address_book
+    This function returns a birthday for a contact with the name given as a parameter in the address_book.
+
     :param name -> str
     :return birthday -> str
     """
     birthday = address_book.data[name].birthday
     if birthday is None:
-        return f'There is no birthday for contact with name {name}'
+        return f'There is no birthdate for a contact named {name}.'
     else:
         return f'{name} ->\n--birthday:\n{birthday.value}\n--days to birthday:\n{address_book.data[name].days_to_birthday()}\n\n'
+
 
 @input_error
 def get_email(name):
     """
-    This function returns the email for contact with the name that is given as a parameter in the address_book
+    This function returns an email for a contact with the name given as a parameter in the address_book.
+
     :param name -> str
     :return email -> str
     """
     email = address_book.data[name].email
     if email is None:
-        return f'There is no email for contact with name {name}'
+        return f'There is no email for a contact named {name}.'
     else:
         return f'{name} ->\n--email:\n{email.value}\n\n'
+
 
 @input_error
 def get_address(name):
     """
-    This function returns the address for contact with the name that is given as a parameter in the address_book
+    This function returns the address for a contact with the name given as a parameter in the address_book.
+
     :param name -> str
     :return address -> str
     """
     address = address_book.data[name].address
     if address is None:
-        return f'There is no address for contact with name {name}'
+        return f'There is no address for a contact named {name}.'
     else:
         return f'{name} ->\n--address:\n{address.value}\n\n'
+
 
 @input_error
 def show_all(data=address_book.data):
     """
-    This function returns all contact from the given data. If data is not given then data = address_book
+    This function returns all contact details from the given data. If data is not provided, then data = address_book.
+
     :param: data -> dict
     :return: phone_book -> str
     """
     phone_book = ''
     for name, info in data.items():
-        phones = '--phones:\n'
+        phones = '--Phone numbers:\n'
         if data[name].phones:
             for phone in data[name].phones:
                 phones += f'{phone.value}\n'
         else:
-            phones += 'no phones\n'
+            phones += 'no phone numbers to display\n'
         phone_book += f'\n{name} ->\n{phones}'
         birthday = data[name].birthday
         if birthday is not None:
             phone_book += f'--birthday:\n{birthday.value}\n--days to birthday:\n{data[name].days_to_birthday()}\n'
         email = data[name].email
         if email is not None:
-            phone_book += f'--email:\n{email.value}\n'
+            phone_book += f'--Emails:\n{email.value}\n'
         address = data[name].address
         if address is not None:
-            phone_book += f'--address:\n{address.value}\n'
+            phone_book += f'--Address:\n{address.value}\n'
     return phone_book
+
 
 @input_error
 def show_page(page_to_show, n_records='3'):
     """
-    This function returns contacts from address_book from given page number (given as a parameter page_to_show)
-    with number of records on each page that is given as a parameter n_records
+    This function returns contacts from address_book from a given page number (given as a parameter page_to_show)
+    with number of records on each page that is given as a parameter n_records.
+
     :param: page_to_show -> str
             n_records -> str
     :return: phone_book -> str
@@ -362,11 +398,13 @@ def show_page(page_to_show, n_records='3'):
             return f'page {page_num}\n{show_all(page)}'
         page_num += 1
 
+
 @input_error
 def search_contact(pattern):
     """
     This function returns contacts from address_book whose name or phone number matches the entered string
-    given as a parameter pattern
+    given as a parameter pattern.
+
     :param: pattern -> str
     :return: result -> str
     """
@@ -381,33 +419,67 @@ def search_contact(pattern):
     if result:
         return show_all(result)
     else:
-        return f'There are no contacts with {pattern}'
+        return f'There are no contacts that match {pattern}.'
+
 
 def greeting():
     return 'How can I help you?'
 
+
 def end():
     return 'Good bye!'
+
 
 def write_file():
     filename = 'address_book.bin'
     with open(filename, 'wb') as file:
         dump(address_book.data, file)
 
+
+def get_help():
+    """
+    Displays the list of commands to control the CLIB assistant.
+    It should be done by typing the word "help".
+    """
+    print("Type one of the following commands".center(120, '-'))
+    print(f"hello or hi".ljust(40), "to welcome CLIB".rjust(80))
+    print(f"add <name> followed by a 12-digit <phone number> and <address>".ljust(80), "to add the data to your "
+                                                                                       f"Book of Contacts".center(40))
+    print(f"add_birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
+    print(f"add_email <name> <email>".ljust(40), "to add the email to a specified contact".rjust(80))
+    print(f"add_address <name> <address>".ljust(40), "to add the address to a specified contact".rjust(80))
+    print(f"change <name> <old phone> <new phone>".ljust(40), "to change the phone number of a "
+                                                              "specified contact".rjust(80))
+    print(f"get_phone <name>".ljust(40), "to get the phone number of a specified contact".rjust(80))
+    print(f"get_email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
+    print(f"get_address <name>".ljust(40), "to get the address of a specified contact".rjust(80))
+    print(f"get_birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
+    print(f"search <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
+    print(f"remove <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
+    print(f"show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
+    print(f"show_page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
+                                                        "given page number".rjust(80))
+
+    print(f"".ljust(120, "_"))
+    return ""
+
+
 def main():
     """
-    This function implements all the logic of interaction with the user, all 'print' and 'input' takes place here
+    This function implements all the logic of interaction with the user, all 'print' and 'input' takes place here.
+
     :param: None
     :return: None
     """
     handler_commands = {'hello': greeting,
                         'hi': greeting,
+                        'help': get_help,
                         'add': add_contact,
                         'add_birthday': add_birthday,
                         'add_email': add_email,
                         'add_address': add_address,
                         'change': change_contact,
-                        'phone': get_phone,
+                        'get_phone': get_phone,
                         'get_birthday': get_birthday,
                         'get_email': get_email,
                         'get_address': get_address,
@@ -415,13 +487,12 @@ def main():
                         'remove': remove_phone,
                         'show all': show_all,
                         'show_page': show_page,
-                        '.': end,
                         'good bye': end,
                         'close': end,
                         'exit': end}
 
     while True:
-        user_input = input('>>>:')
+        user_input = input('Type your command: ')
         if user_input.lower() in handler_commands.keys():
             output = handler_commands[user_input.lower()]()
             print(output)
@@ -434,11 +505,8 @@ def main():
                 print(handler_commands[command](*args))
             else:
                 print(
-                    "You entered an invalid command, please enter one of the next commands: "
-                    "'hello', 'hi', 'show all', 'show_page', 'add', 'add_birthday', 'add_email', 'add_address', 'change',"
-                    " 'phone', 'get_birthday', 'get_email', 'get_address', 'search', 'delete', '.', 'good bye', 'close', 'exit'")
+                    "Unknown command. Please type 'help' to get the full list of available commands.")
 
 
 if __name__ == '__main__':
     main()
-
