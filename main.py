@@ -233,14 +233,13 @@ def add_contact(name, phone=None, birthday=None):
 @input_error
 def del_contact(name):
     """
-    This function deletes a contact with a name given as
-    parameter in the address_book
+    This function deletes a contact with a name given as parameter in the address_book
 
     :param name -> str
     :return str
     """
     address_book.del_record(name)
-    return f'Contact {name} successfully deleted.'
+    return f'Contact {name} has been deleted.'
 
 
 @input_error
@@ -475,10 +474,12 @@ def get_help():
     print(f"get_birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
     print(f"search <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
     print(f"remove <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
+    print(f"delete <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
     print(f"show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
     print(f"show_page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
                                                         "given page number".rjust(80))
-
+    print(f"goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "
+                                                "Bot.".rjust(80))
     print(f"".ljust(120, "_"))
     return ""
 
