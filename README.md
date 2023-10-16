@@ -1,5 +1,6 @@
 # CLIB
 ## The Command Line Interface Bot by **PyCrafters**
+___
 
 ### Table of Contents  
 1. [Project Description](#contacts-and-the-book-of-notes)  
