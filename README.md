@@ -8,6 +8,8 @@ ____
 - 1.2. [Notes](#notes)
 - 1.3. [Sorting Files](#sorting-files)
 2. [Available Functions](#available-functions)
+- - [hello / hi](#Command:hello/hi)
+- - [add](#Command:add)
 3. [License](#license)
 4. [Authors](#authors)
 ____
