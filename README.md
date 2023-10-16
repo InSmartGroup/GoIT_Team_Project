@@ -29,8 +29,10 @@ ___
    - [delete](#command-delete)
    - [help](#command-help)
    - [goodbye, close, exit](#command-goodbye--close--exit)
-3. [License](#license)
-4. [Authors](#authors)
+3. [Installation](#installation)
+4. [Using the Program](#using-the-program)
+5. [License](#license)
+6. [Authors](#authors)
 ____
 
 ## Contacts and the Book of Notes
@@ -191,6 +193,12 @@ good bye
 close
 exit
 ```
+
+## Installation
+
+
+## Using the Program
+
 ____
 
 ## License
