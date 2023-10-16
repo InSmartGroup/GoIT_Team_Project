@@ -1,5 +1,3 @@
-![Alt text](https://drive.google.com/drive/u/0/my-drive/clib.png)
-
 # CLIB
 ## The Command Line Interface Bot by **PyCrafters**
 
