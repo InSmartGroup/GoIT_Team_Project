@@ -8,9 +8,9 @@ ___
 - 1.2. [Notes](#notes)
 - 1.3. [Sorting Files](#sorting-files)
 2. [Available Commands](#available-commands)
-   - [General commands](#general-commands)
-   - [The Book of Contacts commands](#the-book-of-contacts-commands)
-   - [The Note Book Commands](#the-note-book-commands)
+   - [General](#general-commands)
+   - [The Book of Contacts](#the-book-of-contacts-commands)
+   - [The Note Book](#the-note-book-commands)
 3. [Installation](#installation)
 4. [Using the Program](#using-the-program)
 5. [License](#license)
@@ -47,7 +47,7 @@ ____
 The user should use the command line and enter commands to control CLIB and the data he entered.
 The full list of available commands is presented below:
 
-### General commands
+### General
 #### Command: hello / hi
 - Result: Welcomes CLIB and greets the user
 - Example:
@@ -79,7 +79,7 @@ Good bye!
 ```
 ____
 
-### The Book of Contacts commands
+### The Book of Contacts
 #### Command: add
 - Result: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
 Optionally, the user can add only the contact name itself, without providing the phone and birthday 
@@ -249,7 +249,7 @@ Contact Steve has been deleted.
 ```
 ____
 
-### The Note Book Commands
+### The Note Book
 #### Command: add_note
 - Output: Adds a new note to the Note Book
 - Example:
