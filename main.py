@@ -176,16 +176,24 @@ address_book = AddressBook()
 note_book = Notes()
 
 
-def parse(user_input):
+def parse(user_input, commands):
     """
     This function parses user's input into command and arguments.
 
     :param user_input: user input -> str
-    :return: command -> str, args -> list
+                        commands -> list
+    :return: command -> str (or None), args -> list (or None)
     """
-    user_input_list = user_input.split(' ')
-    command = user_input_list[0]
-    args = user_input_list[1:]
+    command = None
+    for elem in commands:
+        if user_input.startswith(elem):
+            command = elem
+            len_command = len(elem.split(' '))
+            user_input_list = user_input.split(' ')
+            args = user_input_list[len_command:]
+            break
+        if command is None:
+            args = None
     return (command, args)
 
 
@@ -743,27 +751,27 @@ def main():
     handler_commands = {'hello': greeting,
                         'hi': greeting,
                         'help': get_help,
-                        'add': add_contact,
                         'delete': del_contact,
-                        'add_birthday': add_birthday,
-                        'add_email': add_email,
-                        'add_address': add_address,
+                        'add birthday': add_birthday,
+                        'add email': add_email,
+                        'add address': add_address,
                         'change': change_contact,
-                        'get_phone': get_phone,
-                        'get_birthday': get_birthday,
-                        'get_email': get_email,
-                        'get_address': get_address,
+                        'get phone': get_phone,
+                        'get birthday': get_birthday,
+                        'get email': get_email,
+                        'get address': get_address,
                         'search': search_contact,
                         'remove': remove_phone,
                         'show all': show_all,
-                        'show_page': show_page,
+                        'show page': show_page,
                         'good bye': end,
                         'close': end,
                         'exit': end,
-                        'add_note': add_note,
-                        'find_note': find_note,  # find_note <text for search> <one or few tags in format #tag #tag>
-                        'delete_note': delete_note,  # delete_note <text in note> <one or few tags in format #tag #tag>
-                        'edit_note': edit_note,  # edit_note <text in note> <one or few tags in format #tag #tag>
+                        'add note': add_note,
+                        'find note': find_note,  # find_note <text for search> <one or few tags in format #tag #tag>
+                        'delete note': delete_note,  # delete_note <text in note> <one or few tags in format #tag #tag>
+                        'edit note': edit_note,  # edit_note <text in note> <one or few tags in format #tag #tag>
+                        'add': add_contact
                         }
 
     print("Welcome! I'm CLI - your personal Command Line Interface Bot.")
@@ -778,8 +786,8 @@ def main():
                 write_file()
                 exit()
         else:
-            command, args = parse(user_input.lower())
-            if command in handler_commands.keys():
+            command, args = parse(user_input, handler_commands.keys())
+            if command:
                 print(handler_commands[command](*args))
             else:
                 print(
