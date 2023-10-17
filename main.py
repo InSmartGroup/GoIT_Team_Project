@@ -129,25 +129,24 @@ class Email(Field):
         else:
             raise EmailInvalidFormatError('Invalid email format')
 
+
 class Notes(UserList):
 
     def __init__(self):
-
         super().__init__()
 
         filename = 'note_book.bin'
         if Path(filename).exists():
             with open(filename, 'rb') as file:
                 self.data = load(file)
-    def add_note(self, note):
 
+    def add_note(self, note):
         self.data.append(note)
 
 
 class Note():
 
     def __init__(self, text, tags=None, title=None):
-
         self.text = text
         self.tags = tags
         self.title = title
@@ -217,6 +216,7 @@ def input_error(func):
             return 'Invalid email format.'
         except NoteInputInvalidFormatError:
             return 'Incorrect command format. Enter the correct parameters'
+
     return inner
 
 
@@ -274,7 +274,7 @@ def del_contact(name):
 @input_error
 def add_birthday(name, birthday):
     """
-    This function adds a birthday for a contact with a name given as parameters in the address_book.
+    This function adds birthday for a contact with a name given as parameters in the address_book.
 
     :param name -> str
            birthday -> str
@@ -415,7 +415,7 @@ def show_all(data=address_book.data):
             for phone in data[name].phones:
                 phones += f'{phone.value}\n'
         else:
-            phones += 'no phone numbers to display\n'
+            phones += 'No phone numbers to display\n'
         phone_book += f'\n{name} ->\n{phones}'
         birthday = data[name].birthday
         if birthday is not None:
@@ -486,13 +486,14 @@ def write_file():
     with open(filename, 'wb') as file:
         dump(note_book.data, file)
 
+
 def get_help():
     """
     Displays the list of commands to control the CLIB assistant.
-    It should be done by typing the word "help".
+    It should be done by typing the word "help" in the command line.
     """
-    print("Type one of the following commands".center(120, '-'))
-    print(f"hello or hi".ljust(40), "to welcome CLIB".rjust(80))
+    print("".center(120, "*"))
+    print("Phone Book Commands".center(120, '-'))
     print(f"add <name> followed by a 12-digit <phone number> and <address>".ljust(80), "to add the data to your "
                                                                                        f"Book of Contacts".center(40))
     print(f"add_birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
@@ -510,13 +511,35 @@ def get_help():
     print(f"show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
     print(f"show_page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
                                                         "given page number".rjust(80))
+
+    print(f"".center(120, "_"))
+
+    print("Note Book commands".center(120, "-"))
+    print("add_note <text>".ljust(40), "to add a new text note to your Note Book".rjust(80))
+    print("find_note <keyword>".ljust(40), "to find the list of notes that contain the given keyword".rjust(80))
+    print("edit_note <keyword>".ljust(40), "to find the note by a given keyword and edit it".rjust(80))
+    print("delete_note <keyword>".ljust(40), "to find the list of notes that contain a given keyword and"
+                                             "delete it".rjust(80))
+    print(f"".center(120, "_"))
+
+    print("General Commands".center(120, "-"))
+    print(f"hello or hi".ljust(40), "to welcome CLIB".rjust(80))
     print(f"goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "
-                                                "Bot.".rjust(80))
-    print(f"".ljust(120, "_"))
+                                                "Bot".rjust(80))
+    print(f"".center(120, "_"))
+    print(f"".center(120, "*"))
+
     return ""
 
-def select_notes(*args):
 
+def select_notes(*args):
+    """
+    Retrieves a list of previously added notes by typing in a tag or a keyword.
+
+    :param args: any tags or keywords -> str
+    :return: notes that contain a tag or keyword provided in *args
+    :rtype: list
+    """
     try:
         text_for_search = args[0]
     except IndexError:
@@ -565,16 +588,21 @@ def select_notes(*args):
                 found_notes.append([note, note.title, index])
     return found_notes
 
+
 @input_error
 def add_note(*args):
+    """
+    Adds a text note to note_book.
 
+    :param args: a text note -> str
+    """
     try:
         text = args[0]
     except IndexError:
         raise NoteInputInvalidFormatError
 
     if text.startswith('#') or text.startswith('/t/'):
-        return f'Note has not been added ! Enter note text.'
+        return f"Unable to add the note. Please enter the note in a text format."
 
     tags = []
     title = ''
@@ -590,98 +618,119 @@ def add_note(*args):
 
     note_book.add_note(Note(text, tags, title))
 
-    return f'The note has been added'
+    return f"The note has been added."
+
 
 @input_error
 def find_note(*args):
+    """
+    Returns a list of notes that contain a keyword provided by the user.
 
+    :param args: a keyword by which you want to search the notes -> str
+    :return: a list of notes
+    :rtype: str
+    """
     found_notes = select_notes(*args)
 
     if found_notes:
         if len(found_notes) == 1:
-            return f'Founded notes:\n{found_notes[0][0].title}\n{found_notes[0][0].text}'
+            return f"Found notes:{found_notes[0][0].title}\n{found_notes[0][0].text}"
         else:
-            rezult = f'Founded notes:'
+            result = f"Found notes:"
             for note in sorted(found_notes, key=lambda x: x[1]):
-                rezult += f'\n{note[0].title}\n{note[0].text}'
-            return rezult
+                result += f'{note[0].title}\n{note[0].text}'
+            return result
     else:
-        return f'Note(s) don`t found'
+        return f"No notes match your search criteria."
+
 
 @input_error
 def delete_note(*args):
+    """
+    Permanently deletes a specified note from your note_book.
+    To delete a note, the user has to provide a note keyword first, and then choose one of the options.
 
+    :param args: a keyword by which you want to find notes for future deletion -> str
+    """
     found_notes = select_notes(*args)
-    rezult = f'No notes matching the criterion were found for deletion'
+    result = f"Nothing to delete. No notes match your search criteria"
 
     if found_notes:
         if len(found_notes) == 1:
             del note_book.data[found_notes[0][2]]
-            rezult = f'Deleted note:\n{found_notes[0][0].title}\n{found_notes[0][0].text}'
+            result = f'Deleted note:\n{found_notes[0][0].title}\n{found_notes[0][0].text}'
         else:
             sorted_found_notes = sorted(found_notes, key=lambda x: x[1])
-            list_of_notes = 'Notes matching the condition:'
+            list_of_notes = 'Notes that match the condition:'
 
             for index, note in enumerate(sorted_found_notes):
-                list_of_notes += f'\n{index+1}) {note[0].title}\n{note[0].text}'
+                list_of_notes += f'\n{index + 1}) {note[0].title}\n{note[0].text}'
 
             print(f'{list_of_notes}')
 
-            choice = input(f'You can:\n' \
-                     f'Don`t delete anything - enter "0"\n' \
-                     f'Delete all - enter "a" or "A"\n' \
-                     f'Delete note № - enter the note number\n'
-                        f'Your choice - ')
+            choice = input(f"Available options:\n" \
+                           f"Cancel deletion: enter '0'\n" \
+                           f"Delete all notes: enter 'a' or 'A'\n" \
+                           f"Delete note #: enter note number\n"
+                           f"Please enter your command: ")
+
             if choice == '0':
-                rezult = f'Records have not been deleted'
+                result = f"Deletion has been canceled."
             elif choice == 'a' or choice == 'A':
                 for index in range(len(found_notes) - 1, -1, -1):
                     del note_book.data[found_notes[index][2]]
-                rezult = f'Notes has been deleted'
-            elif choice.isdigit() and  (1 <= int(choice) <= len(found_notes)):
+                result = f"All notes have been deleted."
+            elif choice.isdigit() and (1 <= int(choice) <= len(found_notes)):
                 del note_book.data[sorted_found_notes[int(choice) - 1][2]]
-                rezult = f'Note № {choice} has been deleted'
+                result = f"Note #{choice} has been deleted."
             else:
-                rezult = f'The selection is incorrect. Notes have not been deleted'
-    return rezult
+                result = f"Invalid command. Deletion has been canceled."
+    return result
+
 
 @input_error
 def edit_note(*args):
+    """
+    Prints out a list of notes that contain a keyword provided by the user for further editing.
 
+    :param args: a list of notes that contain a given keyword -> str
+    :return: a new note
+    :rtype: str
+    """
     found_notes = select_notes(*args)
-    rezult = f'No notes matching the criterion were found for change'
+    result = f"No notes match your search criteria. Please try again."
 
     if found_notes:
         if len(found_notes) == 1:
-            new_text = input(f'Found note\n'
+            new_text = input(f'Found notes:\n'
                              f'{found_notes[0][0].title}\n'
                              f'{found_notes[0][0].text}\n'
-                             f'Enter new note text (empty string for skip) - ')
+                             f"Type a new note text (Enter to cancel): ")
             if new_text:
                 note_book.data[found_notes[0][2]].text = new_text
-                rezult = 'Note redacted'
+                result = "The note has been edited"
             else:
-                rezult = 'Note unchanged'
+                result = "The note has not been changed"
         else:
             sorted_found_notes = sorted(found_notes, key=lambda x: x[1])
-            list_of_notes = 'Notes matching the condition:'
+            list_of_notes = "Notes that match the condition:"
 
             for index, note in enumerate(sorted_found_notes):
-                list_of_notes += f'\n{index+1}) {note[0].title}\n{note[0].text}'
+                list_of_notes += f"\n{index + 1}) {note[0].title} {note[0].text}"
 
             print(f'{list_of_notes}')
 
-            choice = input(f'Which note to change (0 to skip) - ')
+            choice = input(f"Which note you want to edit (0 to cancel): ")
             if choice == '0':
-                rezult = f'Records have not been edited'
-            elif choice.isdigit() and  (1 <= int(choice) <= len(found_notes)):
-                new_text = input(f'Enter new note text (empty string for skip) - ')
+                result = f"Records have not been edited."
+            elif choice.isdigit() and (1 <= int(choice) <= len(found_notes)):
+                new_text = input(f'Type a new note text (Enter to cancel): ')
                 if new_text:
                     note_book.data[sorted_found_notes[int(choice) - 1][2]].text = new_text
-                    rezult = f'Note № {choice} has been edited'
+                    result = f'Note #{choice} has been edited.'
             else:
-                rezult = f'The selection is incorrect. Notes have not been edited'
-    return rezult
+                result = f"Incorrect selection. Notes have not been edited."
+    return result
 
 
 def main():
@@ -711,13 +760,17 @@ def main():
                         'good bye': end,
                         'close': end,
                         'exit': end,
-                        'add_note': add_note, # add_note <text of note> <one or few tags in format #tag #tag> </t/title>
-                        'find_note': find_note, # find_note <text for search> <one or few tags in format #tag #tag>
-                        'delete_note': delete_note, # delete_note <text in note> <one or few tags in format #tag #tag>
-                        'edit_note': edit_note} # edit_note <text in note> <one or few tags in format #tag #tag>
+                        'add_note': add_note,
+                        'find_note': find_note,  # find_note <text for search> <one or few tags in format #tag #tag>
+                        'delete_note': delete_note,  # delete_note <text in note> <one or few tags in format #tag #tag>
+                        'edit_note': edit_note,  # edit_note <text in note> <one or few tags in format #tag #tag>
+                        }
+
+    print("Welcome! I'm CLI - your personal Command Line Interface Bot.")
+    print("Please type 'help' in the command line below to see the full list of available commands.")
 
     while True:
-        user_input = input('Type your command: ')
+        user_input = input('Enter command: ')
         if user_input.lower() in handler_commands.keys():
             output = handler_commands[user_input.lower()]()
             print(output)
