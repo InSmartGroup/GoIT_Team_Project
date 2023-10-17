@@ -478,11 +478,11 @@ def search_contact(pattern):
 
 
 def greeting():
-    return 'How can I help you?'
+    return 'Hello! How can I help you?'
 
 
 def end():
-    return 'Good bye!'
+    return 'Good bye! Thank you for using CLIB.'
 
 
 def write_file():
@@ -504,29 +504,29 @@ def get_help():
     print("Phone Book Commands".center(120, '-'))
     print(f"add <name> followed by a 12-digit <phone number> and <address>".ljust(80), "to add the data to your "
                                                                                        f"Book of Contacts".center(40))
-    print(f"add_birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
-    print(f"add_email <name> <email>".ljust(40), "to add the email to a specified contact".rjust(80))
-    print(f"add_address <name> <address>".ljust(40), "to add the address to a specified contact".rjust(80))
+    print(f"add birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
+    print(f"add email <name> <email>".ljust(40), "to add the email to a specified contact".rjust(80))
+    print(f"add address <name> <address>".ljust(40), "to add the address to a specified contact".rjust(80))
     print(f"change <name> <old phone> <new phone>".ljust(40), "to change the phone number of a "
                                                               "specified contact".rjust(80))
-    print(f"get_phone <name>".ljust(40), "to get the phone number of a specified contact".rjust(80))
-    print(f"get_email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
-    print(f"get_address <name>".ljust(40), "to get the address of a specified contact".rjust(80))
-    print(f"get_birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
+    print(f"get phone <name>".ljust(40), "to get the phone number of a specified contact".rjust(80))
+    print(f"get email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
+    print(f"get address <name>".ljust(40), "to get the address of a specified contact".rjust(80))
+    print(f"get birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
     print(f"search <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
     print(f"remove <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
     print(f"delete <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
     print(f"show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
-    print(f"show_page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
+    print(f"show page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
                                                         "given page number".rjust(80))
 
     print(f"".center(120, "_"))
 
     print("Note Book commands".center(120, "-"))
-    print("add_note <text>".ljust(40), "to add a new text note to your Note Book".rjust(80))
-    print("find_note <keyword>".ljust(40), "to find the list of notes that contain the given keyword".rjust(80))
-    print("edit_note <keyword>".ljust(40), "to find the note by a given keyword and edit it".rjust(80))
-    print("delete_note <keyword>".ljust(40), "to find the list of notes that contain a given keyword and"
+    print("add note <text>".ljust(40), "to add a new text note to your Note Book".rjust(80))
+    print("find note <keyword>".ljust(40), "to find the list of notes that contain the given keyword".rjust(80))
+    print("edit note <keyword>".ljust(40), "to find the note by a given keyword and edit it".rjust(80))
+    print("delete note <keyword>".ljust(40), "to find the list of notes that contain a given keyword and"
                                              "delete it".rjust(80))
     print(f"".center(120, "_"))
 
@@ -790,8 +790,7 @@ def main():
             if command:
                 print(handler_commands[command](*args))
             else:
-                print(
-                    "Unknown command. Please type 'help' to get the full list of available commands.")
+                print("Unknown command. Please type 'help' to get the full list of available commands.")
 
 
 if __name__ == '__main__':
