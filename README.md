@@ -43,12 +43,12 @@ This project is designed to organize and manage your contact details, notes, and
 videos, etc.
 ____
 
-## Available Commands
+# Available Commands
 The user should use the command line and enter commands to control CLIB and the data he entered.
 The full list of available commands is presented below:
 
-### General
-#### Command: hello / hi
+## General
+### Command: hello / hi
 - Result: Welcomes CLIB and greets the user
 - Example:
 ```commandline
@@ -59,7 +59,7 @@ Output:
 How can I help you?
 ```
 
-#### Command: help
+### Command: help
 - Result: Prints the full list of commands available to a user
 - Example:
 ```commandline
@@ -67,7 +67,7 @@ Input:
 help
 ```
 
-#### Command: goodbye / close / exit
+### Command: goodbye / close / exit
 - Result: Quits the program and terminates the Command Line Interface Bot
 - Example:
 ```commandline
@@ -79,8 +79,8 @@ Good bye!
 ```
 ____
 
-### The Book of Contacts
-#### Command: add
+## The Book of Contacts
+### Command: add
 - Result: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
 Optionally, the user can add only the contact name itself, without providing the phone and birthday 
 - Example:
@@ -92,7 +92,7 @@ Output:
 Contact named Steve with a phone number 380935552277 and 1985-01-01 birthday has been added.
 ```
 
-#### Command: add_birthday
+### Command: add_birthday
 - Result: Adds birthday data to a specified contact name
 - Example:
 ```commandline
@@ -103,7 +103,7 @@ Output:
 Steve's birthday 1985-01-01 has been added.
 ```
 
-#### Command: add_email
+### Command: add_email
 - Result: Adds an email to a specified contact name
 - Example:
 ```commandline
@@ -114,7 +114,7 @@ Output:
 Email example@gmail.com for Steve has been added.
 ```
 
-#### Command: add_address
+### Command: add_address
 - Result: Adds an address to a specified contact name
 - Example:
 ```commandline
@@ -125,7 +125,7 @@ Output:
 The address Stepana Bandery 16, kv. 8 for Steve has been added.
 ```
 
-#### Command: change
+### Command: change
 - Result: Changes an old phone number of a specified contact to a new one
 - Example:
 ```commandline
@@ -136,7 +136,7 @@ Output:
 Steve's phone number is now 380951113322
 ```
 
-#### Command: get_phone
+### Command: get_phone
 - Result: If exists, returns a phone number of a specified contact
 - Example:
 ```commandline
@@ -149,7 +149,7 @@ Steve ->
 380951113322
 ```
 
-#### Command: get_email
+### Command: get_email
 - Result: If exists, returns an email number of a specified contact
 - Example:
 ```commandline
@@ -162,7 +162,7 @@ Steve ->
 example@gmail.com
 ```
 
-#### Command: get_address
+### Command: get_address
 - Result: If exists, returns an address of a specified contact name
 - Example:
 ```commandline
@@ -175,7 +175,7 @@ Steve ->
 Stepana Bandery 16, kv. 8
 ```
 
-#### Command: get_birthday
+### Command: get_birthday
 - Result: If exists, returns a birthday of a specified contact name
 - Example:
 ```commandline
@@ -186,7 +186,7 @@ Output:
 There is no birthdate for a contact named Steve
 ```
 
-#### Command: search
+### Command: search
 - Result: If exists, returns the searched name or a phone number
 - Examples:
 ```commandline
@@ -203,7 +203,7 @@ example@gmail.com
 Stepana Bandery 16, kv. 8
 ```
 
-#### Command: remove
+### Command: remove
 - Result: Deletes the phone number of a specified contact
 - Example:
 ```commandline
@@ -214,7 +214,7 @@ Output:
 Steve's phone number 380951113322 has been removed.
 ```
 
-#### Command: show all
+### Command: show all
 - Result: Prints all the contact details in the Book of Contacts
 - Example:
 ```commandline
@@ -229,7 +229,7 @@ example@gmail.com
 Stepana Bandery 16, kv. 8
 ```
 
-#### Command: show_page
+### Command: show_page
 - Result: Returns contacts from the address book for a given page number
 - Example:
 ```commandline
@@ -237,7 +237,7 @@ Input:
 show_page Steve 380951113322
 ```
 
-#### Command: delete
+### Command: delete
 - Result: Deletes a contact with a specified name
 - Examples:
 ```commandline
@@ -249,8 +249,8 @@ Contact Steve has been deleted.
 ```
 ____
 
-### The Note Book
-#### Command: add_note
+## The Note Book
+### Command: add_note
 - Output: Adds a new note to the Note Book
 - Example:
 ```commandline
@@ -259,7 +259,7 @@ add_note welcome onboard
 add_note hello world
 ```
 
-#### Command: find_note
+### Command: find_note
 - Result: Returns a list of notes that contain a keyword provided by the user
 - Example:
 ```commandline
@@ -272,7 +272,7 @@ welcome onboard
 hello world
 ```
 
-#### Command: edit_note
+### Command: edit_note
 - Result: Prints out a list of notes that contain a keyword provided by the user for further editing
 - Example:
 ```commandline
@@ -285,7 +285,7 @@ Notes that match the condition:
 2) hello world
 ```
 
-#### Command: delete_note
+### Command: delete_note
 - Result: Permanently deletes a specified note by providing a note keyword first, and then choosing one of the options.
 - Example:
 ```commandline
