@@ -1,5 +1,4 @@
 import functions
-import pathlib
 from sort import main as sort
 
 
