@@ -13,56 +13,50 @@ class AddressBook(UserDict):
             with open(filename, 'rb') as file:
                 self.data = load(file)
 
-    def add_record(self, Record):
-        self.data[Record.name.value] = Record
+    def add_record(self, record):
+        self.data[record.name.value] = record
 
     def del_record(self, name):
         del self.data[name]
 
     def iterator(self, n_records):
-        page = dict()
+        page = {}
         i = 0
         for name, record in self.data.items():
             page[name] = record
             i += 1
             if i == n_records:
                 yield page
-                page = dict()
+                page = {}
                 i = 0
         if page:
             yield page
 
 
 class Record:
-    def __init__(self, Name, Birthday=None, Email=None, Address=None):
-        self.name = Name
+    def __init__(self, name, birthday=None, email=None, address=None):
+        self.name = name
         self.phones = []
-        self.birthday = Birthday
-        self.email = Email
-        self.address = Address
+        self.birthday = birthday
+        self.email = email
+        self.address = address
 
-    def add_phone(self, Phone):
-        self.phones.append(Phone)
+    def add_phone(self, phone):
+        self.phones.append(phone)
 
-    def remove_phone(self, Rem_Phone):
-        for Phone in self.phones:
-            if Phone.value == Rem_Phone.value:
-                self.phones.remove(Phone)
+    def remove_phone(self, rem_phone):
+        for phone in self.phones:
+            if phone.value == rem_phone.value:
+                self.phones.remove(phone)
 
-    def change_phone(self, Old_Phone, New_Phone):
-        for Phone in self.phones:
-            if Phone.value == Old_Phone.value:
-                self.phones.remove(Phone)
-                self.phones.append(New_Phone)
+    def add_birthday(self, birthday):
+        self.birthday = birthday
 
-    def add_birthday(self, Birthday):
-        self.birthday = Birthday
+    def add_email(self, email):
+        self.email = email
 
-    def add_email(self, Email):
-        self.email = Email
-
-    def add_address(self, Address):
-        self.address = Address
+    def add_address(self, address):
+        self.address = address
 
     def days_to_birthday(self):
         birthday = datetime.strptime(self.birthday.value, '%Y-%m-%d').date()
@@ -100,7 +94,7 @@ class Phone(Field):
             self._value = value
         else:
             raise PhoneInvalidFormatError('Invalid phone format. Please enter the phone in the format'
-                                          ' +xxxxxxxxxxxx, xxxxxxxxxxxx or xxxxxxxxxx')
+                                          ' +000000000000, 000000000000 or 0000000000')
 
 
 class Birthday(Field):
@@ -194,7 +188,7 @@ def parse(user_input, commands):
             break
         if command is None:
             args = None
-    return (command, args)
+    return command, args
 
 
 def input_error(func):
@@ -217,7 +211,7 @@ def input_error(func):
         except TypeError:
             return 'You have entered invalid number of arguments for this command.'
         except PhoneInvalidFormatError:
-            return 'Invalid phone format. Please enter the phone in the format +xxxxxxxxxxxx, xxxxxxxxxxxx or xxxxxxxxxx'
+            return 'Invalid phone format. Please enter the phone in the format +000000000000, 000000000000 or 0000000000'
         except BirthdayInvalidFormatError:
             return 'Invalid birthday format. Please enter the birthday in the format YYYY-MM_DD'
         except EmailInvalidFormatError:
@@ -329,7 +323,8 @@ def change_contact(name, old_phone, new_phone):
            new_phone -> str
     :return str
     """
-    address_book.data[name].change_phone(Phone(old_phone), Phone(new_phone))
+    address_book.data[name].remove_phone(Phone(old_phone))
+    address_book.data[name].add_phone(Phone(new_phone))
     return f"{name}'s phone number is now {new_phone}."
 
 
@@ -782,7 +777,7 @@ def main():
         if user_input.lower() in handler_commands.keys():
             output = handler_commands[user_input.lower()]()
             print(output)
-            if output == 'Good bye!':
+            if output == 'Good bye! Thank you for using CLIB.':
                 write_file()
                 exit()
         else:
