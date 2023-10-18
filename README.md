@@ -11,6 +11,7 @@ ___
    - [General](#general-commands)
    - [The Book of Contacts](#the-book-of-contacts-commands)
    - [The Note Book](#the-note-book-commands)
+   - [File Sorter](#file-sorter)
 3. [Installation](#installation)
 4. [Using the Program](#using-the-program)
 5. [License](#license)
@@ -251,7 +252,7 @@ ____
 
 ## The Note Book
 ### Command: add note
-- Output: Adds a new note to the Note Book
+- Result: Adds a new note to the Note Book
 - Example:
 ```commandline
 Input:
@@ -303,6 +304,15 @@ Delete note #: enter note number
 Please enter your command:
 ```
 ____
+
+## File Sorter
+### Command: sort
+   - Result: Sorts files by folders in a destination directory depending on the file extension
+   - Example:
+```commandline
+Input:
+sort C:\Users\User\Documents\files-to_sort
+```
 
 ## Installation
 

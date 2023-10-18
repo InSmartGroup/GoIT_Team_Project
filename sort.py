@@ -1,13 +1,15 @@
 import shutil
 import pathlib
 
-
 sorted_files = {}
 found_extension = set()
 unknown_extension = set()
 
 
 def sort_files(path, dest_dirs, work_extension, path_to_sort_folder):
+    """
+    Sorts files by folders in a destination directory depending on the file extension.
+    """
     for path_element in pathlib.Path(path).iterdir():
         if path_element.is_dir() and path_element.name not in dest_dirs:
             sort_files(path_element, dest_dirs, work_extension, path_to_sort_folder)
@@ -61,6 +63,9 @@ def sort_files(path, dest_dirs, work_extension, path_to_sort_folder):
 
 
 def output_sort_information():
+    """
+    Prints out a summary of the sort_files function call.
+    """
     if sorted_files:
         print(f'The script sorted the files: {sorted_files}')
         print(f'The script sorted the files with extensions: {found_extension}')
@@ -69,6 +74,10 @@ def output_sort_information():
 
 
 def main():
+    """
+    The main function that performs file sorting and prints out the summary.
+    The files are sorted by folders in a destination directory depending on extensions.
+    """
     path_to_sort_folder = input("Enter the path to the folder you want to sort: ")
 
     dest_dirs = ['images', 'video', 'audio', 'documents', 'archives']
@@ -80,7 +89,6 @@ def main():
 
     # check if there are folders 'images', 'video', 'audio', 'documents', 'archives'
     # in the folder to be sorted. If these folders are missing, they are created
-
     for folder in dest_dirs:
         if not pathlib.Path(fr'{path_to_sort_folder}\{folder}').exists():
             pathlib.Path(fr'{path_to_sort_folder}\{folder}').mkdir()
