@@ -357,8 +357,8 @@ def get_help():
 
     print("General Commands".center(120, "-"))
     print(f"hello or hi".ljust(40), "to welcome CLIB".rjust(80))
-    print("sort, followed by <path to a folder>".ljust(40), "to sort all the files and put them into appropriate "
-                                                           "folder depending on a file extension")
+    print("sort, followed by <path to a folder>".ljust(40), "sorts all the files and puts them into "
+                                                           "folders depending on file extensions".rjust(80))
 
     print(f"goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "
                                                 "Bot".rjust(80))
