@@ -96,6 +96,8 @@ def main():
     sort_files(path_to_sort_folder, dest_dirs, work_extension, path_to_sort_folder)
     output_sort_information()
 
+    return ""
+
 
 if __name__ == '__main__':
     main()

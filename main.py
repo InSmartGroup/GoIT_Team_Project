@@ -1,12 +1,11 @@
 import functions
+import pathlib
 from sort import main as sort
+
 
 def main():
     """
     This function implements all the logic of interaction with the user, all 'print' and 'input' takes place here.
-
-    :param: None
-    :return: None
     """
     handler_commands = {'hello': functions.greeting,
                         'hi': functions.greeting,
@@ -36,7 +35,7 @@ def main():
                         }
 
     print("Welcome! I'm CLI - your personal Command Line Interface Bot.")
-    print("Please type 'help' in the command line below to see the full list of available commands.")
+    print("Please enter your command or type 'help' to see the full list of available commands.")
 
     while True:
         user_input = input('Enter command: ')
@@ -55,4 +54,7 @@ def main():
 
 
 if __name__ == '__main__':
+    PATH = pathlib.Path.cwd() / 'files_to_sort'
+    # print(PATH)
+    r"C:\DEMO\files_to_sort"
     main()

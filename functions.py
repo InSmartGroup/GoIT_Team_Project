@@ -324,40 +324,46 @@ def get_help():
     """
     print("".center(120, "*"))
     print("Phone Book Commands".center(120, '-'))
-    print(f"add <name> followed by a 12-digit <phone number> and <address>".ljust(80), "to add the data to your "
+    print("add <name> followed by a 12-digit <phone number> and <address>".ljust(80), "to add the data to your "
                                                                                        f"Book of Contacts".center(40))
-    print(f"add birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
-    print(f"add email <name> <email>".ljust(40), "to add the email to a specified contact".rjust(80))
-    print(f"add address <name> <address>".ljust(40), "to add the address to a specified contact".rjust(80))
-    print(f"change <name> <old phone> <new phone>".ljust(40), "to change the phone number of a "
+
+    print("add birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
+    print("add email <name> <email>".ljust(40), "to add the email to a specified contact".rjust(80))
+    print("add address <name> <address>".ljust(40), "to add the address to a specified contact".rjust(80))
+    print("change <name> <old phone> <new phone>".ljust(40), "to change the phone number of a "
                                                               "specified contact".rjust(80))
-    print(f"get phone <name>".ljust(40), "to get the phone number of a specified contact".rjust(80))
-    print(f"get email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
-    print(f"get address <name>".ljust(40), "to get the address of a specified contact".rjust(80))
-    print(f"get birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
-    print(f"search <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
-    print(f"remove <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
-    print(f"delete <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
-    print(f"show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
-    print(f"show page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
+
+    print("get phone <name>".ljust(40), "to get the phone number of a specified contact".rjust(80))
+    print("get email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
+    print("get address <name>".ljust(40), "to get the address of a specified contact".rjust(80))
+    print("get birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
+    print("search <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
+    print("remove <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
+    print("delete <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
+    print("show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
+    print("show page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
                                                         "given page number".rjust(80))
 
-    print(f"".center(120, "_"))
+    print("".center(120, "_"))
 
     print("Note Book commands".center(120, "-"))
     print("add note <text>".ljust(40), "to add a new text note to your Note Book".rjust(80))
     print("find note <keyword>".ljust(40), "to find the list of notes that contain the given keyword".rjust(80))
     print("edit note <keyword>".ljust(40), "to find the note by a given keyword and edit it".rjust(80))
-    print("delete note <keyword>".ljust(40), "to find the list of notes that contain a given keyword and"
+    print("delete note <keyword>".ljust(40), "to find the list of notes that contain a given keyword and "
                                              "delete it".rjust(80))
-    print(f"".center(120, "_"))
+
+    print("".center(120, "_"))
 
     print("General Commands".center(120, "-"))
     print(f"hello or hi".ljust(40), "to welcome CLIB".rjust(80))
+    print("sort, followed by <path to a folder>".ljust(40), "to sort all the files and put them into appropriate "
+                                                           "folder depending on a file extension")
+
     print(f"goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "
                                                 "Bot".rjust(80))
-    print(f"".center(120, "_"))
-    print(f"".center(120, "*"))
+    print("".center(120, "_"))
+    print("".center(120, "*"))
 
     return ""
 
