@@ -311,7 +311,10 @@ ____
    - Example:
 ```commandline
 Input:
-sort C:\Users\User\Documents\files-to_sort
+sort
+
+Output
+Enter the path to the folder you want to sort: C:\Users\User\Documents\files-to_sort
 ```
 
 ## Installation
