@@ -1,5 +1,5 @@
 import functions
-
+from sort import main as sort
 
 def main():
     """
@@ -31,7 +31,8 @@ def main():
                         'find note': functions.find_note,
                         'delete note': functions.delete_note,
                         'edit note': functions.edit_note,
-                        'add': functions.add_contact
+                        'add': functions.add_contact,
+                        'sort': sort
                         }
 
     print("Welcome! I'm CLI - your personal Command Line Interface Bot.")
