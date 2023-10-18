@@ -54,7 +54,4 @@ def main():
 
 
 if __name__ == '__main__':
-    PATH = pathlib.Path.cwd() / 'files_to_sort'
-    # print(PATH)
-    r"C:\DEMO\files_to_sort"
     main()
