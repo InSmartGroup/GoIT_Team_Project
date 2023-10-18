@@ -92,34 +92,34 @@ Output:
 Contact named Steve with a phone number 380935552277 and 1985-01-01 birthday has been added.
 ```
 
-### Command: add_birthday
+### Command: add birthday
 - Result: Adds birthday data to a specified contact name
 - Example:
 ```commandline
 Input:
-add_birthday Steve 1985-01-01
+add birthday Steve 1985-01-01
 
 Output:
 Steve's birthday 1985-01-01 has been added.
 ```
 
-### Command: add_email
+### Command: add email
 - Result: Adds an email to a specified contact name
 - Example:
 ```commandline
 Input:
-add_email Steve example@gmail.com
+add email Steve example@gmail.com
 
 Output:
 Email example@gmail.com for Steve has been added.
 ```
 
-### Command: add_address
+### Command: add address
 - Result: Adds an address to a specified contact name
 - Example:
 ```commandline
 Input:
-add_address Steve StepanaBandery16
+add address Steve Stepana Bandery 16, kv. 8
 
 Output:
 The address Stepana Bandery 16, kv. 8 for Steve has been added.
@@ -136,12 +136,12 @@ Output:
 Steve's phone number is now 380951113322
 ```
 
-### Command: get_phone
+### Command: get phone
 - Result: If exists, returns a phone number of a specified contact
 - Example:
 ```commandline
 Input:
-get_phone Steve
+get phone Steve
 
 Output:
 Steve ->
@@ -149,12 +149,12 @@ Steve ->
 380951113322
 ```
 
-### Command: get_email
+### Command: get email
 - Result: If exists, returns an email number of a specified contact
 - Example:
 ```commandline
 Input:
-get_email Steve
+get email Steve
 
 Output:
 Steve ->
@@ -162,12 +162,12 @@ Steve ->
 example@gmail.com
 ```
 
-### Command: get_address
+### Command: get address
 - Result: If exists, returns an address of a specified contact name
 - Example:
 ```commandline
 Input:
-get_address Steve
+get address Steve
 
 Output:
 Steve ->
@@ -175,12 +175,12 @@ Steve ->
 Stepana Bandery 16, kv. 8
 ```
 
-### Command: get_birthday
+### Command: get birthday
 - Result: If exists, returns a birthday of a specified contact name
 - Example:
 ```commandline
 Input:
-get_birthday Steve
+get birthday Steve
 
 Output:
 There is no birthdate for a contact named Steve
@@ -229,12 +229,12 @@ example@gmail.com
 Stepana Bandery 16, kv. 8
 ```
 
-### Command: show_page
+### Command: show page
 - Result: Returns contacts from the address book for a given page number
 - Example:
 ```commandline
 Input:
-show_page Steve 380951113322
+show page Steve 380951113322
 ```
 
 ### Command: delete
@@ -250,21 +250,21 @@ Contact Steve has been deleted.
 ____
 
 ## The Note Book
-### Command: add_note
+### Command: add note
 - Output: Adds a new note to the Note Book
 - Example:
 ```commandline
 Input:
-add_note welcome onboard
-add_note hello world
+add note welcome onboard
+add note hello world
 ```
 
-### Command: find_note
+### Command: find note
 - Result: Returns a list of notes that contain a keyword provided by the user
 - Example:
 ```commandline
 Input:
-find_note w
+find note w
 
 Output:
 Found notes:
@@ -272,12 +272,12 @@ welcome onboard
 hello world
 ```
 
-### Command: edit_note
+### Command: edit note
 - Result: Prints out a list of notes that contain a keyword provided by the user for further editing
 - Example:
 ```commandline
 Input:
-edit_note w
+edit note w
 
 Output:
 Notes that match the condition:
@@ -285,12 +285,12 @@ Notes that match the condition:
 2) hello world
 ```
 
-### Command: delete_note
+### Command: delete note
 - Result: Permanently deletes a specified note by providing a note keyword first, and then choosing one of the options.
 - Example:
 ```commandline
 Input:
-delete_note w
+delete note w
 
 Output:
 Notes that match the condition:
