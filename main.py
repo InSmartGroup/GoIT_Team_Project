@@ -5,13 +5,35 @@ from pathlib import Path
 import re
 
 
+class DataTransfer:
+
+    def __init__(self, filename):
+        self.filename = filename
+
+    def load_data(self):
+        if Path(self.filename).exists():
+            with open(self.filename, 'rb') as file:
+                return load(file)
+        return None
+
+    def save_data(self, data):
+        with open(self.filename, 'wb') as file:
+            dump(data, file)
+
+
 class AddressBook(UserDict):
     def __init__(self):
         super().__init__()
         filename = 'address_book.bin'
-        if Path(filename).exists():
-            with open(filename, 'rb') as file:
-                self.data = load(file)
+        data_loader = DataTransfer(filename)
+        loaded_data = data_loader.load_data()
+
+        if loaded_data:
+            self.data = loaded_data
+
+    def save_data(self):
+        data_saver = DataTransfer('address_book.bin')
+        data_saver.save_data(self.data)
 
     def add_record(self, record):
         self.data[record.name.value] = record
@@ -130,9 +152,15 @@ class Notes(UserList):
         super().__init__()
 
         filename = 'note_book.bin'
-        if Path(filename).exists():
-            with open(filename, 'rb') as file:
-                self.data = load(file)
+        data_loader = DataTransfer(filename)
+        loaded_data = data_loader.load_data()
+
+        if loaded_data:
+            self.data = loaded_data
+
+    def save_data(self):
+        data_saver = DataTransfer('note_book.bin')
+        data_saver.save_data(self.data)
 
     def add_note(self, note):
         self.data.append(note)
@@ -481,13 +509,8 @@ def end():
 
 
 def write_file():
-    filename = 'address_book.bin'
-    with open(filename, 'wb') as file:
-        dump(address_book.data, file)
-
-    filename = 'note_book.bin'
-    with open(filename, 'wb') as file:
-        dump(note_book.data, file)
+    address_book.save_data()
+    note_book.save_data()
 
 
 def get_help():
