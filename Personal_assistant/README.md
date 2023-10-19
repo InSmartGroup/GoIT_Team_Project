@@ -13,9 +13,8 @@ ___
    - [The Note Book](#the-note-book-commands)
    - [File Sorter](#file-sorter)
 3. [Installation](#installation)
-4. [Using the Program](#using-the-program)
-5. [License](#license)
-6. [Authors](#authors)
+4[License](#license)
+5[Authors](#authors)
 ____
 
 ## Contacts and the Book of Notes
