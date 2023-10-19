@@ -318,10 +318,13 @@ Enter the path to the folder you want to sort: C:\Users\User\Documents\files-to_
 ```
 
 ## Installation
-
-
-## Using the Program
-
+1. To install the program as executable file, open the Terminal and in the command line change the directory
+to a folder with *setup.py* installation file.
+2. Next, in the Terminal type:
+```commandline
+pip install -e .
+```
+3. Finally, in the Terminal type **helper** to run the program
 ____
 
 ## License

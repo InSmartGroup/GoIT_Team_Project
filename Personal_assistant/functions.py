@@ -1,4 +1,4 @@
-import classes
+from Personal_assistant import classes
 
 
 def parse(user_input, commands):
