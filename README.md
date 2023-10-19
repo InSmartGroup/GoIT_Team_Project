@@ -13,8 +13,8 @@ ___
    - [The Note Book](#the-note-book-commands)
    - [File Sorter](#file-sorter)
 3. [Installation](#installation)
-4[License](#license)
-5[Authors](#authors)
+4. [License](#license)
+5. [Authors](#authors)
 ____
 
 ## Contacts and the Book of Notes
@@ -317,14 +317,16 @@ Enter the path to the folder you want to sort: C:\Users\User\Documents\files-to_
 ```
 
 ## Installation
-1. To install the program as executable file, open the Terminal and in the command line change the directory
+- To install the program as executable file, open the Terminal and in the command line change the directory
 to a folder with *setup.py* installation file.
-2. Next, in the Terminal type:
+
+- Next, in the Terminal type:
 ```commandline
 pip install -e .
 ```
 This will also build a new Python package named 'Personal_assistant', which you now can import.
-3. Finally, in the Terminal type **helper** to run the program.
+
+- Finally, in the Terminal type **helper** to run the program.
 ____
 
 ## License
