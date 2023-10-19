@@ -1,27 +1,47 @@
 # CLIB
-## The Command Line Interface Bot by **PyCrafters**
-___
+### The Command Line Interface Bot by **PyCrafters**
 
 ### Table of Contents  
-1. [Project Description](#contacts-and-the-book-of-notes)  
-- 1.1. [Contacts](#contacts)
-- 1.2. [Notes](#notes)
+1. [Project Description](#project-description)
+- 1.1. [Book of Contacts](#book-of-contacts)
+- 1.2. [Note Book](#note-book)
 - 1.3. [Sorting Files](#sorting-files)
-2. [Available Commands](#available-commands)
+2. [Installation](#installation)
+3. [Using the Program](#using-the-program)
+4. [Available Commands](#available-commands)
    - [General](#general-commands)
-   - [The Book of Contacts](#the-book-of-contacts-commands)
-   - [The Note Book](#the-note-book-commands)
-   - [File Sorter](#file-sorter)
-3. [Installation](#installation)
-4. [License](#license)
-5. [Authors](#authors)
+   - [Book of Contacts](#book-of-contacts-commands)
+   - [Note Book](#note-book-commands)
+   - [File Sorter](#file-sorter-commands)
+5. [License](#license)
+6. [Authors](#authors)
 ____
 
-## Contacts and the Book of Notes
+# Installation
+1. To install the program as executable file, open the Terminal and in the command line change the directory
+to a folder with *setup.py* installation file.
+
+2. Next, in the Terminal type:
+```commandline
+pip install -e .
+```
+This will also build a new Python package named 'Personal_assistant', which you now can import.
+
+3. Finally, in the Terminal type **helper** to run the program.
+____
+
+# Using the Program
+After installing the program and running it in the Terminal, the user can:
+- access the Phone Book (ref. see the *Book of Commands Contacts* section)
+- access the Note Book (ref. see the *Note Book Commands* section);
+- sort files using the integrated file sorter (ref. see the *sort* function)
+____
+
+# Project Description
 This project is a console application, developed for keeping contact details, notes, and for searching, editing,
 and sorting the data. The main functions include: 
 
-### Contacts
+### Book of Contacts
 - **Keeping contact details**: Add contacts with names, addresses, phone numbers, email addresses, and birthdays.
 - **Outputting contacts by birthdate**: Search and output a list of contacts whose birthday occur in a specified number
 of days from the current date.
@@ -30,7 +50,7 @@ a new or editing an existing record. In case of incorrect input, you will receiv
 - **Contact search**: Make the search for a specified contact in your contact book.
 - **Editing and deleting contacts**: Handy capabilities for editing and deleting records. 
 
-### Notes
+### Note Book
 - **Notes keeping**: Write and keep you notes with text information.
 - **Notes search**: Search for notes in your Book of Notes.
 - **Editing and deleting notes**: Handy capabilities for editing and deleting notes.
@@ -47,7 +67,7 @@ ____
 The user should use the command line and enter commands to control CLIB and the data he entered.
 The full list of available commands is presented below:
 
-## General
+## General Commands
 ### Command: hello / hi
 - Result: Welcomes CLIB and greets the user
 - Example:
@@ -79,7 +99,7 @@ Good bye!
 ```
 ____
 
-## The Book of Contacts
+## Book of Contacts Commands
 ### Command: add
 - Result: Adds the contact name, his 12-digit phone number, and birthday (YYYY-MM-DD) to the Book of Contacts
 Optionally, the user can add only the contact name itself, without providing the phone and birthday 
@@ -249,7 +269,7 @@ Contact Steve has been deleted.
 ```
 ____
 
-## The Note Book
+## Note Book Commands
 ### Command: add note
 - Result: Adds a new note to the Note Book
 - Example:
@@ -304,7 +324,7 @@ Please enter your command:
 ```
 ____
 
-## File Sorter
+## File Sorter Commands
 ### Command: sort
    - Result: Sorts files by folders in a destination directory depending on the file extension
    - Example:
@@ -315,18 +335,6 @@ sort
 Output
 Enter the path to the folder you want to sort: C:\Users\User\Documents\files-to_sort
 ```
-
-## Installation
-- To install the program as executable file, open the Terminal and in the command line change the directory
-to a folder with *setup.py* installation file.
-
-- Next, in the Terminal type:
-```commandline
-pip install -e .
-```
-This will also build a new Python package named 'Personal_assistant', which you now can import.
-
-- Finally, in the Terminal type **helper** to run the program.
 ____
 
 ## License
