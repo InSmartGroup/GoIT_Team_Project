@@ -323,7 +323,8 @@ to a folder with *setup.py* installation file.
 ```commandline
 pip install -e .
 ```
-3. Finally, in the Terminal type **helper** to run the program
+This will also build a new Python package named 'Personal_assistant', which you now can import.
+3. Finally, in the Terminal type **helper** to run the program.
 ____
 
 ## License
