@@ -1,5 +1,5 @@
-import functions
-from sort import main as sort
+from Personal_assistant import functions
+from Personal_assistant.sort import main as sort
 
 
 def main():
