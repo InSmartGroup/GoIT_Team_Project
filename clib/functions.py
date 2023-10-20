@@ -474,7 +474,7 @@ def find_note(*args):
         else:
             result = "Found notes:"
             for note in sorted(found_notes, key=lambda x: x[1]):
-                result += f'\n{note[0].title}{note[0].text}'
+                result += f'\n{note[0].title}\n{note[0].text}'
             return result
     else:
         return "No notes match your search criteria."
