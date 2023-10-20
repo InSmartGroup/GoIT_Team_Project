@@ -166,7 +166,7 @@ class Notes(UserList):
         self.data.append(note)
 
 
-class Note():
+class Note:
 
     def __init__(self, text, tags=None, title=None):
         self.text = text

@@ -356,11 +356,11 @@ def get_help():
     print("".center(120, "_"))
 
     print("General Commands".center(120, "-"))
-    print(f"hello or hi".ljust(40), "to welcome CLIB".rjust(80))
+    print("hello or hi".ljust(40), "to welcome CLIB".rjust(80))
     print("sort, followed by <path to a folder>".ljust(40), "sorts all the files and puts them into "
                                                            "folders depending on file extensions".rjust(80))
 
-    print(f"goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "
+    print("goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "
                                                 "Bot".rjust(80))
     print("".center(120, "_"))
     print("".center(120, "*"))
@@ -438,7 +438,7 @@ def add_note(*args):
         raise classes.NoteInputInvalidFormatError
 
     if text.startswith('#') or text.startswith('/t/'):
-        return f"Unable to add the note. Please enter the note in a text format."
+        return "Unable to add the note. Please enter the note in a text format."
 
     tags = []
     title = ''
@@ -454,7 +454,7 @@ def add_note(*args):
 
     classes.note_book.add_note(classes.Note(text, tags, title))
 
-    return f"The note has been added."
+    return "The note has been added."
 
 
 @input_error
@@ -470,14 +470,14 @@ def find_note(*args):
 
     if found_notes:
         if len(found_notes) == 1:
-            return f"Found notes:{found_notes[0][0].title}\n{found_notes[0][0].text}"
+            return f"Found note:{found_notes[0][0].title}\n{found_notes[0][0].text}"
         else:
-            result = f"Found notes:"
+            result = "Found notes:"
             for note in sorted(found_notes, key=lambda x: x[1]):
-                result += f'{note[0].title}\n{note[0].text}'
+                result += f'\n{note[0].title}\n{note[0].text}'
             return result
     else:
-        return f"No notes match your search criteria."
+        return "No notes match your search criteria."
 
 
 @input_error
@@ -489,7 +489,7 @@ def delete_note(*args):
     :param args: a keyword by which you want to find notes for future deletion -> str
     """
     found_notes = select_notes(*args)
-    result = f"Nothing to delete. No notes match your search criteria"
+    result = "Nothing to delete. No notes match your search criteria"
 
     if found_notes:
         if len(found_notes) == 1:
@@ -504,23 +504,23 @@ def delete_note(*args):
 
             print(f'{list_of_notes}')
 
-            choice = input(f"Available options:\n" \
-                           f"Cancel deletion: enter '0'\n" \
-                           f"Delete all notes: enter 'a' or 'A'\n" \
+            choice = input(f"Available options:\n" 
+                           f"Cancel deletion: enter '0'\n" 
+                           f"Delete all notes: enter 'a' or 'A'\n" 
                            f"Delete note #: enter note number\n"
                            f"Please enter your command: ")
 
             if choice == '0':
-                result = f"Deletion has been canceled."
+                result = "Deletion has been canceled."
             elif choice == 'a' or choice == 'A':
                 for index in range(len(found_notes) - 1, -1, -1):
                     del classes.note_book.data[found_notes[index][2]]
-                result = f"All notes have been deleted."
+                result = "All notes have been deleted."
             elif choice.isdigit() and (1 <= int(choice) <= len(found_notes)):
                 del classes.note_book.data[sorted_found_notes[int(choice) - 1][2]]
                 result = f"Note #{choice} has been deleted."
             else:
-                result = f"Invalid command. Deletion has been canceled."
+                result = "Invalid command. Deletion has been canceled."
     return result
 
 
@@ -534,7 +534,7 @@ def edit_note(*args):
     :rtype: str
     """
     found_notes = select_notes(*args)
-    result = f"No notes match your search criteria. Please try again."
+    result = "No notes match your search criteria. Please try again."
 
     if found_notes:
         if len(found_notes) == 1:
@@ -556,14 +556,14 @@ def edit_note(*args):
 
             print(f'{list_of_notes}')
 
-            choice = input(f"Which note you want to edit (0 to cancel): ")
+            choice = input("Which note you want to edit (0 to cancel): ")
             if choice == '0':
-                result = f"Records have not been edited."
+                result = "Records have not been edited."
             elif choice.isdigit() and (1 <= int(choice) <= len(found_notes)):
-                new_text = input(f'Type a new note text (Enter to cancel): ')
+                new_text = input('Type a new note text (Enter to cancel): ')
                 if new_text:
                     classes.note_book.data[sorted_found_notes[int(choice) - 1][2]].text = new_text
                     result = f'Note #{choice} has been edited.'
             else:
-                result = f"Incorrect selection. Notes have not been edited."
+                result = "Incorrect selection. Notes have not been edited."
     return result
