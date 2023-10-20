@@ -5,7 +5,7 @@
 1. [Project Description](#project-description)
 - 1.1. [Book of Contacts](#book-of-contacts)
 - 1.2. [Note Book](#note-book)
-- 1.3. [Sorting Files](#sorting-files)
+- 1.3. [Files Sorter](#sorting-files)
 2. [Installation](#installation)
 3. [Using the Program](#using-the-program)
 4. [Available Commands](#available-commands)
@@ -15,26 +15,6 @@
    - [File Sorter](#file-sorter-commands)
 5. [License](#license)
 6. [Authors](#authors)
-____
-
-# Installation
-1. To install the program as executable file, open the Terminal and in the command line change the directory
-to a folder with *setup.py* installation file.
-
-2. Next, in the Terminal type:
-```commandline
-pip install -e .
-```
-This will also build a new Python package named 'Personal_assistant', which you now can import.
-
-3. Finally, in the Terminal type **helper** to run the program.
-____
-
-# Using the Program
-After installing the program and running it in the Terminal, the user can:
-- access the Phone Book (ref. see the *Book of Commands Contacts* section)
-- access the Note Book (ref. see the *Note Book Commands* section);
-- sort files using the integrated file sorter (ref. see the *sort* function)
 ____
 
 # Project Description
@@ -61,6 +41,26 @@ a new or editing an existing record. In case of incorrect input, you will receiv
 This project is designed to organize and manage your contact details, notes, and files as easy as possible.
 - **Sorting files in a folder**: Automatic files sorting in a specified folder by category, such as images, documents,
 videos, etc.
+____
+
+# Installation
+1. To install the program as executable file, open the Terminal and in the command line change the directory
+to a folder with *setup.py* installation file.
+
+2. Next, in the Terminal type:
+```commandline
+pip install -e .
+```
+This will also build a new Python package named 'Personal_assistant', which you now can import.
+
+3. Finally, in the Terminal type **helper** to run the program.
+____
+
+# Using the Program
+After installing the program and running it in the Terminal, the user can:
+- access the Phone Book (ref. see the *Book of Commands Contacts* section)
+- access the Note Book (ref. see the *Note Book Commands* section);
+- sort files using the integrated file sorter (ref. see the *sort* function)
 ____
 
 # Available Commands
