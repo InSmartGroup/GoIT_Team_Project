@@ -145,12 +145,12 @@ Output:
 The address Stepana Bandery 16, kv. 8 for Steve has been added.
 ```
 
-### Command: change
+### Command: change phone
 - Result: Changes an old phone number of a specified contact to a new one
 - Example:
 ```commandline
 Input:
-change Steve 380935552277 380951113322
+change phone Steve 380935552277 380951113322
 
 Output:
 Steve's phone number is now 380951113322
@@ -196,7 +196,8 @@ Stepana Bandery 16, kv. 8
 ```
 
 ### Command: get birthday
-- Result: If exists, returns a birthday of a specified contact name
+- Result: If exists in Book of Contacts, returns a birthday of a specified contact name and the number of days
+till next birthday.
 - Example:
 ```commandline
 Input:
@@ -206,12 +207,12 @@ Output:
 There is no birthdate for a contact named Steve
 ```
 
-### Command: search
-- Result: If exists, returns the searched name or a phone number
+### Command: show
+- Result: If exists in Book of Contacts, shows a name and a phone number
 - Examples:
 ```commandline
 Input:
-search Steve
+show Steve
 
 Output:
 Steve -->
@@ -223,12 +224,12 @@ example@gmail.com
 Stepana Bandery 16, kv. 8
 ```
 
-### Command: remove
+### Command: delete phone
 - Result: Deletes the phone number of a specified contact
 - Example:
 ```commandline
 Input:
-remove Steve 380951113322
+delete phone Steve 380951113322
 
 Output:
 Steve's phone number 380951113322 has been removed.
