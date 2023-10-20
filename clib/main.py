@@ -1,5 +1,5 @@
-from Personal_assistant import functions
-from Personal_assistant.sort import main as sort
+from clib import functions
+from clib.sort import main as sort
 
 
 def main():
@@ -20,8 +20,6 @@ def main():
                         'show all': functions.show_all,
                         'show page': functions.show_page,
                         'good bye': functions.end,
-                        'close': functions.end,
-                        'exit': functions.end,
                         'add note': functions.add_note,
                         'find note': functions.find_note,
                         'delete note': functions.delete_note,
@@ -31,6 +29,8 @@ def main():
                         'help': functions.get_help,
                         'delete': functions.del_contact,
                         'show': functions.search_contact,
+                        'exit': functions.end,
+                        'close': functions.end,
                         }
 
     print("Welcome! I'm CLI - your personal Command Line Interface Bot.")
