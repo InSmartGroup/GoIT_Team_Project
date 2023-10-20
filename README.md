@@ -145,12 +145,12 @@ Output:
 The address Stepana Bandery 16, kv. 8 for Steve has been added.
 ```
 
-### Command: change
+### Command: change phone
 - Result: Changes an old phone number of a specified contact to a new one
 - Example:
 ```commandline
 Input:
-change Steve 380935552277 380951113322
+change phone Steve 380935552277 380951113322
 
 Output:
 Steve's phone number is now 380951113322
@@ -258,12 +258,12 @@ Input:
 show page Steve 380951113322
 ```
 
-### Command: delete contact
+### Command: delete
 - Result: Deletes a contact with a specified name
 - Examples:
 ```commandline
 Input:
-delete contact Steve
+delete Steve
 
 Output:
 Contact Steve has been deleted.

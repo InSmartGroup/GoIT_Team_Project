@@ -8,17 +8,14 @@ def main():
     """
     handler_commands = {'hello': functions.greeting,
                         'hi': functions.greeting,
-                        'help': functions.get_help,
-                        'delete contact': functions.del_contact,
                         'add birthday': functions.add_birthday,
                         'add email': functions.add_email,
                         'add address': functions.add_address,
-                        'change': functions.change_contact,
+                        'change phone': functions.change_contact,
                         'get phone': functions.get_phone,
                         'get birthday': functions.get_birthday,
                         'get email': functions.get_email,
                         'get address': functions.get_address,
-                        'show': functions.search_contact,
                         'delete phone': functions.remove_phone,
                         'show all': functions.show_all,
                         'show page': functions.show_page,
@@ -30,7 +27,10 @@ def main():
                         'delete note': functions.delete_note,
                         'edit note': functions.edit_note,
                         'add': functions.add_contact,
-                        'sort': sort
+                        'sort': sort,
+                        'help': functions.get_help,
+                        'delete': functions.del_contact,
+                        'show': functions.search_contact,
                         }
 
     print("Welcome! I'm CLI - your personal Command Line Interface Bot.")
