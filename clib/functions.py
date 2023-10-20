@@ -42,7 +42,7 @@ def input_error(func):
         except TypeError:
             return 'You have entered invalid number of arguments for this command.'
         except classes.PhoneInvalidFormatError:
-            return 'Invalid phone format. Please enter the phone in the format +000000000000, 000000000000 or 0000000000'
+            return 'Invalid phone format. Please use one of format examples: +380951112233, 380951112233 or 0951112233'
         except classes.BirthdayInvalidFormatError:
             return 'Invalid birthday format. Please enter the birthday in the format YYYY-MM_DD'
         except classes.EmailInvalidFormatError:
