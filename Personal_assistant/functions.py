@@ -337,9 +337,9 @@ def get_help():
     print("get email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
     print("get address <name>".ljust(40), "to get the address of a specified contact".rjust(80))
     print("get birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
-    print("search <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
-    print("remove <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
-    print("delete <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
+    print("show <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
+    print("delete phone <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
+    print("delete contact <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
     print("show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
     print("show page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
                                                         "given page number".rjust(80))
@@ -500,7 +500,7 @@ def delete_note(*args):
             list_of_notes = 'Notes that match the condition:'
 
             for index, note in enumerate(sorted_found_notes):
-                list_of_notes += f'\n{index + 1}) {note[0].title}\n{note[0].text}'
+                list_of_notes += f'\n{index + 1}) {note[0].title} {note[0].text}'
 
             print(f'{list_of_notes}')
 

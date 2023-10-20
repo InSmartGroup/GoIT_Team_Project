@@ -196,7 +196,8 @@ Stepana Bandery 16, kv. 8
 ```
 
 ### Command: get birthday
-- Result: If exists, returns a birthday of a specified contact name
+- Result: If exists in Book of Contacts, returns a birthday of a specified contact name and the number of days
+till next birthday.
 - Example:
 ```commandline
 Input:
@@ -206,12 +207,12 @@ Output:
 There is no birthdate for a contact named Steve
 ```
 
-### Command: search
-- Result: If exists, returns the searched name or a phone number
+### Command: show
+- Result: If exists in Book of Contacts, shows a name and a phone number
 - Examples:
 ```commandline
 Input:
-search Steve
+show Steve
 
 Output:
 Steve -->
@@ -223,12 +224,12 @@ example@gmail.com
 Stepana Bandery 16, kv. 8
 ```
 
-### Command: remove
+### Command: delete phone
 - Result: Deletes the phone number of a specified contact
 - Example:
 ```commandline
 Input:
-remove Steve 380951113322
+delete phone Steve 380951113322
 
 Output:
 Steve's phone number 380951113322 has been removed.
@@ -257,12 +258,12 @@ Input:
 show page Steve 380951113322
 ```
 
-### Command: delete
+### Command: delete contact
 - Result: Deletes a contact with a specified name
 - Examples:
 ```commandline
 Input:
-delete Steve
+delete contact Steve
 
 Output:
 Contact Steve has been deleted.
