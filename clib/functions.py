@@ -1,4 +1,4 @@
-from Personal_assistant import classes
+from clib import classes
 
 
 def parse(user_input, commands):
@@ -327,11 +327,11 @@ def get_help():
     print("add <name> followed by a 12-digit <phone number> and <address>".ljust(80), "to add the data to your "
                                                                                        f"Book of Contacts".center(40))
 
-    print("add birthday <name> <birthday>".ljust(40), "to add a birthday to a specified contact name".rjust(80))
+    print("add birthday <name> <birthday, format YYYY-MM-DD>".ljust(80), "to add a birthday to a contact".rjust(40))
     print("add email <name> <email>".ljust(40), "to add the email to a specified contact".rjust(80))
     print("add address <name> <address>".ljust(40), "to add the address to a specified contact".rjust(80))
-    print("change <name> <old phone> <new phone>".ljust(40), "to change the phone number of a "
-                                                              "specified contact".rjust(80))
+    print("change phone <name> <old phone> <new phone>".ljust(60), "to change the phone number of a "
+                                                              "specified contact".rjust(60))
 
     print("get phone <name>".ljust(40), "to get the phone number of a specified contact".rjust(80))
     print("get email <name>".ljust(40), "to get the email of a specified contact".rjust(80))
@@ -339,7 +339,7 @@ def get_help():
     print("get birthday <name>".ljust(40), "to get the birthday of a specified contact".rjust(80))
     print("show <name> or <phone number>".ljust(40), "to get the needed contact details".rjust(80))
     print("delete phone <name> <phone number>".ljust(40), "to delete a phone number of a specified contact".rjust(80))
-    print("delete contact <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
+    print("delete <name>".ljust(40), "to permanently delete a specified contact from the Book of Contacts".rjust(80))
     print("show all".ljust(40), "to see all the contact details in your Book of Contacts".rjust(80))
     print("show page <name> <phone number>".ljust(40), "to return contacts from address_book from a "
                                                         "given page number".rjust(80))
@@ -356,8 +356,8 @@ def get_help():
     print("".center(120, "_"))
 
     print("General Commands".center(120, "-"))
-    print("hello or hi".ljust(40), "to welcome CLIB".rjust(80))
-    print("sort, followed by <path to a folder>".ljust(40), "sorts all the files and puts them into "
+    print("hello / hi".ljust(40), "to greet CLIB".rjust(80))
+    print("sort <path to a folder>".ljust(40), "sorts all the files and puts them into "
                                                            "folders depending on file extensions".rjust(80))
 
     print("goodbye, close, or exit".ljust(40), "to quit the program and terminate the Command Line Interface "

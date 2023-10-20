@@ -272,29 +272,31 @@ ____
 
 ## Note Book Commands
 ### Command: add note
-- Result: Adds a new note to the Note Book
+- Result: Adds a new note to the Note Book. Optionally, you can add note tags by typing '#<tag name>' after the note
 - Example:
 ```commandline
 Input:
 add note welcome onboard
 add note hello world
+add note buy milk #buy
+add note buy eggs #buy
 ```
 
 ### Command: find note
-- Result: Returns a list of notes that contain a keyword provided by the user
+- Result: Returns a list of notes that contain a keyword or a tag provided by the user
 - Example:
 ```commandline
 Input:
-find note w
+find note #buy
 
 Output:
 Found notes:
-welcome onboard
-hello world
+buy milk
+buy eggs
 ```
 
 ### Command: edit note
-- Result: Prints out a list of notes that contain a keyword provided by the user for further editing
+- Result: Prints out a list of notes that contain a keyword or a tag provided by the user for further editing
 - Example:
 ```commandline
 Input:

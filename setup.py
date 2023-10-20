@@ -1,7 +1,7 @@
 from setuptools import setup, find_namespace_packages
 
 setup(
-    name='Personal_assistant',
+    name='clib',
     version='1.0.0',
     description='This project is a console application, developed for keeping contact details, notes, '
                 'and for searching, editing, and sorting the data.',
@@ -11,5 +11,5 @@ setup(
     license='MIT',
     include_package_data=True,
     packages=find_namespace_packages(),
-    entry_points={'console_scripts': ['helper=Personal_assistant.main:main']}
+    entry_points={'console_scripts': ['clib=clib.main:main']}
 )
